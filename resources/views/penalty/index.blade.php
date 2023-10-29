@@ -16,6 +16,12 @@
                                     <img class="rounded-circle" src="/assets/img/avatars/6.png" alt="Avatar">
                                 </li>
                             @empty
+                                <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
+                                    class="avatar pull-up" aria-label="0" data-bs-original-title="0">
+                                    <img class="rounded-circle"
+                                        src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4wB6L?ver=72af"
+                                        alt="Avatar">
+                                </li>
                             @endforelse
                         </ul>
                     </div>
