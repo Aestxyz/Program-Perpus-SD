@@ -5,13 +5,23 @@
         <div class="row">
             <div class="col-12 col-md-6">
                 <div class="card-body">
-                    <h4 class="card-title display-6 mb-4 text-truncate lh-sm">Selamat {{ Auth()->user()->name }}! 🎉</h4>
-                    <p class="mb-0">Kamu mempunyai {{ $count }} buku yang terdaftar dalam
-                        {{ $categories->count() }} kategori buku saat ini.</p>
+                    <p class="mb-0">Anda sedang mengakses halaman kategori buku. Mohon pastikan bahwa tindakan yang
+                        Anda lakukan sesuai dengan
+                        aturan dan kebijakan perpustakaan.</p>
+                    <div class="row mt-3 mb-0">
+                        <div class="col">
+                            <h6 class="m-0 fw-bold">Total Kategori</h6>
+                            <p class="m-0">{{ $categories->count() }}</p>
+                        </div>
+                        <div class="col">
+                            <h6 class="m-0 fw-bold">Buku</h6>
+                            <p class="m-0">{{ $count }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-12 col-md-6 position-relative text-center">
-                <img src="https://demos.themeselection.com/materio-bootstrap-html-admin-template/assets/img/illustrations/illustration-john-2.png"
+                <img src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/img/illustrations/man-with-laptop-light.png"
                     class="card-img-position bottom-0 w-50 end-0 scaleX-n1-rtl" alt="View Profile">
             </div>
         </div>
@@ -43,7 +53,7 @@
                                         <form action="{{ route('categories.destroy', $category->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-outline-danger btn-sm" type="submit">
+                                            <button class="btn  btn-danger btn-sm" type="submit">
                                                 Hapus</button>
                                         </form>
                                     </div>

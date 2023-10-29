@@ -17,8 +17,8 @@
                 </div>
                 <div class="col-md">
                     <div class="card-body">
-                        <h2 class="fw-bold text-wrap mb-0">{{ $book->title }}</h2>
-                        <p>{{ $book->category->name }}</p>
+                        <p class="fw-bold text-wrap mb-0">{{ $book->category->name }}</p>
+                        <h2>{{ $book->title }}</h2>
                         <p>{{ $book->synopsis }}</p>
                         <div class="row mb-0">
                             <p class="text-wrap"><i class="mdi mdi-identifier mdi-24px me-2"></i>ISBN:

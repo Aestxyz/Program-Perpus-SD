@@ -27,15 +27,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
 
-Auth::routes();
+Auth::routes([
+    'verify' => false,
+    'register' => false
+]);
 
 Route::middleware(['auth', 'role:Petugas,Kepala'])->group(function () {
 
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     Route::prefix('profile')->group(function () {
         Route::get('/{slug}', [ProfileController::class, 'index'])->name('profile');

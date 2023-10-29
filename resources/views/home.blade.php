@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6 position-relative text-center">
-                <img src="https://demos.themeselection.com/materio-bootstrap-html-admin-template/assets/img/illustrations/illustration-john-2.png"
+                <img src="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/img/illustrations/man-with-laptop-light.png"
                     class="card-img-position bottom-0 w-50 end-0 scaleX-n1-rtl" alt="View Profile">
             </div>
         </div>

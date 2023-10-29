@@ -1,13 +1,13 @@
 <ul class="menu-inner py-1">
-    <li class="menu-item {{ request()->is('home') ? 'active' : '' }}">
-        <a href="/home" class="menu-link">
+    <li class="menu-item {{ request()->is('/') ? 'active' : '' }}">
+        <a href="/" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
             <div data-i18n="Home">Home</div>
         </a>
     </li>
 
     @if (Auth()->user()->role == 'Kepala')
-        <li class="menu-item {{ request()->is(['users', 'confirmation-account']) ? 'active' : '' }}">
+        {{-- <li class="menu-item {{ request()->is(['users', 'confirmation-account']) ? 'active' : '' }}">
             <a href="/users" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons mdi mdi-human"></i>
                 <div data-i18n="Users">Users</div>
@@ -30,8 +30,14 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> --}}
 
+        <li class="menu-item {{ request()->is('users') ? 'active' : '' }}">
+            <a href="/users" class="menu-link">
+                <i class="menu-icon tf-icons mdi mdi-human"></i>
+                <div data-i18n="users">Users</div>
+            </a>
+        </li>
         <li class="menu-item {{ request()->is('reports') ? 'active' : '' }}">
             <a href="/reports" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-cash"></i>
@@ -39,7 +45,7 @@
             </a>
         </li>
     @else
-        <li class="menu-item {{ request()->is(['users', 'confirmation-account']) ? 'active' : '' }}">
+        {{-- <li class="menu-item {{ request()->is(['users', 'confirmation-account']) ? 'active' : '' }}">
             <a href="/users" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons mdi mdi-human"></i>
                 <div data-i18n="Users">Users</div>
@@ -62,8 +68,13 @@
                     </a>
                 </li>
             </ul>
+        </li> --}}
+        <li class="menu-item {{ request()->is('users') ? 'active' : '' }}">
+            <a href="/users" class="menu-link">
+                <i class="menu-icon tf-icons mdi mdi-human"></i>
+                <div data-i18n="users">Users</div>
+            </a>
         </li>
-
         <li class="menu-item {{ request()->is('categories') ? 'active' : '' }}">
             <a href="/categories" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-shape"></i>
@@ -81,7 +92,7 @@
         <li class="menu-item {{ request()->is('transactions') ? 'active' : '' }}">
             <a href="/transactions" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-sync-circle"></i>
-                <div data-i18n="transactions">Transaksi Perpustakaan</div>
+                <div data-i18n="transactions">Transaksi</div>
                 <div class="badge bg-danger rounded-pill ms-auto {{ $late_days == null ? 'd-none' : '' }}">
                     {{ $late_days }}
                 </div>

@@ -84,10 +84,10 @@
                                         <form action="{{ route('users.destroy', $user->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-outline-danger btn-sm" type="submit">
+                                            <button class="btn  btn-danger btn-sm" type="submit">
                                                 Hapus</button>
                                         </form>
-                                        <a class="btn btn-outline-primary btn-sm"
+                                        <a class="btn  btn-primary btn-sm"
                                             href="{{ route('users.show', $user->slug) }}" role="button">Lihat</a>
                                     </div>
                                 </td>

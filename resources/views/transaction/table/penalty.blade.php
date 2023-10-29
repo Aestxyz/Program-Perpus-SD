@@ -20,7 +20,7 @@
                     <td>{{ $item->return_date ?? '-' }}</td>
                     <td>
                         <div class="d-flex gap-2">
-                            @include('transaction.wa_link')
+                            {{-- @include('transaction.wa_link') --}}
                             @include('transaction.show')
                             <a class="btn btn-danger btn-sm" href="{{ route('penalties.show', $item->id) }}">Bayar</a>
                         </div>

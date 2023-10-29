@@ -47,23 +47,6 @@
         table.dataTable tbody td {
             text-align: center;
         }
-
-        /* mode dark */
-        .pagination .page-item.disabled .page-link {
-            color: #fff;
-            /* Set disabled link text color to white */
-            background-color: #323349;
-            /* Set disabled link background color to match paginate background */
-        }
-
-        .pagination .page-item .page-link:hover {
-            color: #fff;
-            /* Set link text color to white on hover */
-            background-color: #6c757d;
-            /* Set link background color on hover */
-            border-color: #6c757d;
-            /* Set link border color on hover */
-        }
     </style>
 @endpush
 @push('scripts')
