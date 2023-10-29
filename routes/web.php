@@ -28,19 +28,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome', [
-        'book' => Book::count(),
-        'transaction' => Transaction::count(),
-        'user' => User::whereNotNull('email_verified_at')->count(),
-    ]);
+    return view('auth.login');
 });
 
 Auth::routes();
-
-Route::get('/catalog-books', [CatalogController::class, 'index'])->name('catalog.index');
-Route::get('/catalog-books/{id}/show', [CatalogController::class, 'show'])->name('catalog.show');
-
-
 
 Route::middleware(['auth', 'role:Petugas,Kepala'])->group(function () {
 
@@ -101,10 +92,13 @@ Route::middleware(['auth', 'role:Petugas,Kepala'])->group(function () {
     Route::get('/reports', [ReportController::class, 'index'])->name('reports');
 });
 
-Route::middleware(['auth', 'role:Anggota'])->group(function () {
-    Route::prefix('catalog-books')->group(function () {
-        Route::post('/', [CatalogController::class, 'store'])->name('catalog.store');
-        Route::get('/{id}/process', [CatalogController::class, 'process'])->name('catalog.process');
-        Route::get('/history', [CatalogController::class, 'history'])->name('catalog.history');
-    });
-});
+// Route::middleware(['auth', 'role:Anggota'])->group(function () {
+//     Route::prefix('catalog-books')->group(function () {
+//         Route::post('/', [CatalogController::class, 'store'])->name('catalog.store');
+//         Route::get('/{id}/process', [CatalogController::class, 'process'])->name('catalog.process');
+//         Route::get('/history', [CatalogController::class, 'history'])->name('catalog.history');
+//     });
+// });
+
+// Route::get('/catalog-books', [CatalogController::class, 'index'])->name('catalog.index');
+// Route::get('/catalog-books/{id}/show', [CatalogController::class, 'show'])->name('catalog.show');
