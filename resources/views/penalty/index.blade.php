@@ -41,9 +41,9 @@
                         <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
                             @forelse ($dont_payment->take(5) as $item)
                                 <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                    class="avatar pull-up" aria-label="Julee Rossignol"
-                                    data-bs-original-title="Julee Rossignol">
-                                    <img class="rounded-circle" src="/assets/img/avatars/6.png" alt="Avatar">
+                                    class="avatar pull-up" aria-label="{{ $item->user->name }}"
+                                    data-bs-original-title="{{ $item->user->name }}">
+                                    <img class="rounded-circle" src="/assets/img/avatars/1.png" alt="Avatar">
                                 </li>
                             @empty
                             @endforelse

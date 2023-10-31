@@ -7,9 +7,6 @@
                 <div class="card-header">
                     <div class="card-title text-center">
                         <h5 class="fw-bold">Pembayaran Denda Peminjaman dan Pengembalian Buku Perpustakaan</h5>
-                        <p class="fw-bold">Kode Peminjaman :</p>
-                        <button class="btn btn-body text-black" disabled
-                            style="outline-style: dashed;">{{ $transaction->code }}</button>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -86,7 +83,7 @@
                                 class="rounded-circle">
                         </div>
                         <div class="d-flex flex-column">
-                            <a href="app-user-view-account.html">
+                            <a href="#">
                                 <h6 class="mb-1">{{ $transaction->book->title }}</h6>
                             </a>
                             <small>{{ $transaction->book->category->name }}</small>
