@@ -18,7 +18,7 @@ class APISeeder extends Seeder
      */
     public function run()
     {
-        $recentBooks = Http::get('https://www.dbooks.org/api/search/school')->json();
+        $recentBooks = Http::get('https://www.dbooks.org/api/search/recent')->json();
 
         if (isset($recentBooks['books'])) {
             foreach ($recentBooks['books'] as $book) {

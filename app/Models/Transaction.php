@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Transaction extends Model
@@ -12,13 +12,11 @@ class Transaction extends Model
     use HasFactory;
 
     protected $with = [
-        'book',
         'user'
     ];
 
     protected $fillable = [
         'code',
-        'book_id',
         'user_id',
         'borrow_date',
         'return_date',
@@ -36,13 +34,13 @@ class Transaction extends Model
     }
 
     /**
-     * Get the book that owns the Transaction
+     * The books that belong to the Transaction
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function book()
+    public function books(): BelongsToMany
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsToMany(Book::class);
     }
 
     /**

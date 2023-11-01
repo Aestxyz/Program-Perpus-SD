@@ -20,11 +20,11 @@ class TransactionFactory extends Factory
         $now = Carbon::now()->subMonths(1);
         return [
             'code' => Str::random(20),
-            'book_id' => Book::all()->random(),
             'user_id' => User::all()->random(),
             'borrow_date' => $now->addDays(7),
             'return_date' => $now->addDays(14),
             'status' => $this->faker->randomElement(['Menunggu', 'Berjalan', 'Terlambat'])
         ];
     }
+
 }

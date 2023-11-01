@@ -18,7 +18,6 @@ class CreateTransactionsTable extends Migration
             $table->string('code');
             $table->date('borrow_date')->nullable();
             $table->date('return_date')->nullable();
-            $table->foreignId('book_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->enum('status', ['Menunggu', 'Berjalan', 'Terlambat', 'Selesai', 'Tolak']);
             $table->timestamps();
