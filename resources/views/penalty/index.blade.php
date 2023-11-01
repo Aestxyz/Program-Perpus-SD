@@ -53,9 +53,6 @@
                         <div class="role-heading">
                             <h5 class="mb-1">Total Terlambat</h5>
                         </div>
-                        @if ($dont_payment)
-                            <a href="{{ route('transactions.index') }}">Lihat</a>
-                        @endforelse
                     </div>
                 </div>
             </div>

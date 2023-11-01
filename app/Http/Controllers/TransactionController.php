@@ -14,9 +14,6 @@ class TransactionController extends Controller
 {
     public function index()
     {
-        $waiting = Transaction::where('status', 'Menunggu')
-            ->orderBy('updated_at', 'DESC')
-            ->get();
         $walking = Transaction::where('status', 'Berjalan')
             ->orderBy('updated_at', 'DESC')
             ->get();
@@ -32,10 +29,38 @@ class TransactionController extends Controller
         $return_date = Carbon::now()->addDays(7)->format('Y-m-d');
 
         $users = User::select('id', 'name')->get();
-        $books = Book::get();
+        $books = Book::whereType('Umum')->get();
 
-        return view('transaction.index', [
-            'waiting' => $waiting,
+        return view('transaction.generalbook', [
+            'walking' => $walking,
+            'penalty' => $penalty,
+            'finished' => $finished,
+            'borrow_date' => $borrow_date,
+            'return_date' => $return_date,
+            'users' => $users,
+            'books' => $books,
+        ]);
+    }
+    public function textbook()
+    {
+        $walking = Transaction::where('status', 'Berjalan')
+            ->orderBy('updated_at', 'DESC')
+            ->get();
+        $penalty = Transaction::where('status', 'Terlambat')
+            ->orderBy('updated_at', 'DESC')
+            ->get();
+        $finished = Transaction::where('status', 'Selesai')
+            ->orderBy('updated_at', 'DESC')
+            ->get();
+
+        $borrow_date = Carbon::now()->format('Y-m-d');
+
+        $return_date = Carbon::now()->addDays(7)->format('Y-m-d');
+
+        $users = User::select('id', 'name')->get();
+        $books = Book::whereType('Paket')->get();
+
+        return view('transaction.textbook', [
             'walking' => $walking,
             'penalty' => $penalty,
             'finished' => $finished,

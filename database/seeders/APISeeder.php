@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Book;
 use App\Models\Category;
+use Illuminate\Support\Arr;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +19,7 @@ class APISeeder extends Seeder
      */
     public function run()
     {
-        $recentBooks = Http::get('https://www.dbooks.org/api/search/recent')->json();
+        $recentBooks = Http::get('https://www.dbooks.org/api/search/indonesia')->json();
 
         if (isset($recentBooks['books'])) {
             foreach ($recentBooks['books'] as $book) {
@@ -41,6 +42,7 @@ class APISeeder extends Seeder
                             'publisher' => $bookDetails['publisher'],
                             'synopsis' => $bookDetails['description'],
                             'book_count' => rand(1, 100),
+                            'type' => Arr::random(['Umum', 'Paket']),
                         ];
 
                         $bookModel = Book::create($bookData);

@@ -47,6 +47,31 @@
                     </div>
                 </div>
             </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table border text-center">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>judul</th>
+                                    <th>kategori buku</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($transaction->books as $no => $book)
+                                    <tr>
+                                        <td>{{ ++$no }}.</td>
+                                        <td>{{ $book->title }}</td>
+                                        <td><span class="badge bg-secondary">{{ $book->category->name }}</span></td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="col-12 col-lg-4">
             <div class="card mb-4">
@@ -71,7 +96,7 @@
                 </div>
             </div>
 
-            <div class="card mb-4">
+            {{-- <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="card-title m-0">Detail Buku</h5>
                     <h6 class="m-0"><a href="{{ route('books.show', $transaction->book->id) }}">Lihat</a></h6>
@@ -95,9 +120,8 @@
                     <p class=" mb-1">Tahun Terbit : {{ $transaction->book->year_published }}</p>
                     <p class=" mb-1">Jumlah Buku : {{ $transaction->book->book_count }} Buku</p>
                     <p class=" mb-1">Sinopsis : {{ $transaction->book->synopsis }}</p>
-
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </x-auth.layout>

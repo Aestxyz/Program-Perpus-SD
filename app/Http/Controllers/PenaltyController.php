@@ -45,7 +45,7 @@ class PenaltyController extends Controller
         $book->book_count++;
         $book->save();
 
-        return redirect()->route('transactions.index')->with('success', 'Proses pelunasan dan pengembalian buku telah berhasil dilakukan.');
+        return redirect()->route('penalties.index')->with('success', 'Proses pelunasan dan pengembalian buku telah berhasil dilakukan.');
     }
 
     public function show($id)

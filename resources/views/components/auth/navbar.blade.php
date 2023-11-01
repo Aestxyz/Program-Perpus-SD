@@ -99,6 +99,35 @@
             </a>
         </li>
 
+        <li
+            class="menu-item {{ request()->is(['/transactions/generalbooks', '/transactions/textbooks']) ? 'active' : '' }}">
+            <a href="/transactions" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons mdi mdi-sync-circle"></i>
+                <div data-i18n="transactions">Transaksi</div>
+                <div class="badge bg-danger rounded-pill ms-auto {{ $late_days == null ? 'd-none' : '' }}">
+                    {{ $late_days }}
+                </div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('transactions.generalbooks') }}" class="menu-link">
+                        <div data-i18n="Data-User">Buku Umum</div>
+                        <div class="badge bg-danger rounded-pill ms-auto {{ $late_days == null ? 'd-none' : '' }}">
+                            {{ $late_days }}
+                        </div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('transactions.textbooks') }}" class="menu-link">
+                        <div data-i18n="Konfirmasi-Akun">Buku Paket</div>
+                        <div class="badge bg-danger rounded-pill ms-auto {{ $late_days == null ? 'd-none' : '' }}">
+                            {{ $late_days }}
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
         <li class="menu-item {{ request()->is('penalties') ? 'active' : '' }}">
             <a href="/penalties" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-cash"></i>

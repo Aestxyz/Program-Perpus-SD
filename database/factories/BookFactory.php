@@ -3,8 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Category;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class BookFactory extends Factory
 {
@@ -29,6 +30,7 @@ class BookFactory extends Factory
             'publisher' => $this->faker->company(),
             'synopsis' => $this->faker->paragraph(),
             'book_count' => $this->faker->numberBetween(1, 10),
+            'type' => Arr::random(['Umum', 'Paket']),
         ];
     }
 }

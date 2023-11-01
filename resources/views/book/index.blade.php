@@ -31,6 +31,7 @@
                             <th>No.</th>
                             <th>image</th>
                             <th>judul</th>
+                            <th>tipe buku</th>
                             <th>kategori buku</th>
                             <th>Action</th>
                         </tr>
@@ -44,6 +45,7 @@
                                         width="50" height="50" alt="img-cover">
                                 </td>
                                 <td>{{ $book->title }}</td>
+                                <td>{{ $book->type }}</td>
                                 <td><span class="badge bg-secondary">{{ $book->category->name }}</span></td>
                                 <td>
                                     <a class="btn  btn-primary btn-sm" href="{{ route('books.show', $book->id) }}"

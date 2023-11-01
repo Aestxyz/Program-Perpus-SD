@@ -10,9 +10,6 @@ use App\Http\Controllers\PenaltyController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
-use App\Models\Book;
-use App\Models\Transaction;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -75,15 +72,17 @@ Route::middleware(['auth', 'role:Petugas,Kepala'])->group(function () {
     });
 
     Route::prefix('transactions')->group(function () {
-        Route::get('/', [TransactionController::class, 'index'])->name('transactions.index');
+        Route::get('/generalbooks', [TransactionController::class, 'index'])->name('transactions.generalbooks');
+        Route::get('/textbooks', [TransactionController::class, 'textbook'])->name('transactions.textbooks');
         Route::post('/', [TransactionController::class, 'store'])->name('transactions.store');
         Route::get('/{id}/show', [TransactionController::class, 'show'])->name('transactions.show');
         Route::put('/{id}', [TransactionController::class, 'update'])->name('transactions.update');
         Route::delete('/{id}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
 
-        Route::put('/{id}/confirmation', [TransactionController::class, 'confirmation'])->name('transactions.confirmation');
-        Route::put('/{id}/reject', [TransactionController::class, 'reject'])->name('transactions.reject');
         Route::put('/{id}/finished', [TransactionController::class, 'finished'])->name('transactions.finished');
+
+        // Route::put('/{id}/confirmation', [TransactionController::class, 'confirmation'])->name('transactions.confirmation');
+        // Route::put('/{id}/reject', [TransactionController::class, 'reject'])->name('transactions.reject');
     });
 
     Route::prefix('penalties')->group(function () {

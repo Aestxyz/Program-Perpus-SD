@@ -21,13 +21,14 @@
                         <h2>{{ $book->title }}</h2>
                         <p>{{ $book->synopsis }}</p>
                         <div class="row mb-0">
+                            <p class="text-wrap"><i class="mdi mdi-book-education mdi-24px me-2"></i>Tipe Buku :
+                                {{ $book->type }}</p>
                             <p class="text-wrap"><i class="mdi mdi-identifier mdi-24px me-2"></i>ISBN:
                                 {{ $book->isbn }}</p>
                             <p class="text-wrap"><i class="mdi mdi-counter mdi-24px me-2"></i>Jumlah Buku:
                                 {{ $book->book_count }}</p>
                             <p class="text-wrap"><i class="mdi mdi-face-man mdi-24px me-2"></i>Penulis:
                                 {{ $book->author }}</p>
-
                             <p class="text-wrap"><i class="mdi mdi-clipboard-text-clock mdi-24px me-2"></i>Tahun
                                 Terbit:
                                 {{ $book->year_published }}</p>
