@@ -5,9 +5,11 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ConfirmationAccountController;
+use App\Http\Controllers\GeneralbookController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PenaltyController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\TextbookController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -72,8 +74,8 @@ Route::middleware(['auth', 'role:Petugas,Kepala'])->group(function () {
     });
 
     Route::prefix('transactions')->group(function () {
-        Route::get('/generalbooks', [TransactionController::class, 'index'])->name('transactions.generalbooks');
-        Route::get('/textbooks', [TransactionController::class, 'textbook'])->name('transactions.textbooks');
+        Route::get('/generalbooks', [GeneralbookController::class, 'index'])->name('transactions.generalbooks');
+        Route::get('/textbooks', [TextbookController::class, 'index'])->name('transactions.textbooks');
         Route::post('/', [TransactionController::class, 'store'])->name('transactions.store');
         Route::get('/{id}/show', [TransactionController::class, 'show'])->name('transactions.show');
         Route::put('/{id}', [TransactionController::class, 'update'])->name('transactions.update');

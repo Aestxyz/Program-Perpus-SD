@@ -8,11 +8,11 @@ use App\Models\User;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
-class TextbookController extends Controller
+class GeneralbookController extends Controller
 {
     public function index()
     {
-        $transaction =  Transaction::where('label', 'textbook')
+        $transaction =  Transaction::where('label', 'generalbook')
             ->latest()
             ->get();
 
@@ -21,15 +21,15 @@ class TextbookController extends Controller
         $finished = $transaction->where('status', 'Selesai');
 
         $users = User::where('role', 'Anggota')
-            ->select('id', 'name')
-            ->get();
+        ->select('id', 'name')
+        ->get();
 
-        $books = Book::whereType('Paket')->get();
+        $books = Book::whereType('Umum')->get();
 
         $borrow_date = Carbon::now()->format('Y-m-d');
-        $return_date = Carbon::now()->addMonth(6)->format('Y-m-d');
+        $return_date = Carbon::now()->addDays(7)->format('Y-m-d');
 
-        return view('transaction.textbook', [
+        return view('transaction.generalbook', [
             'walking' => $walking,
             'penalty' => $penalty,
             'finished' => $finished,

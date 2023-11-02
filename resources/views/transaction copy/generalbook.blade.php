@@ -1,7 +1,7 @@
 <x-auth.layout>
-    <x-slot name="title">Transaction Library - Generalbook</x-slot>
+    <x-slot name="title">Transaction Library - General Books</x-slot>
     @include('layouts.table')
-
+    {{-- @dd($transactions) --}}
     <div class="card mb-4">
         <div class="card-widget-separator-wrapper">
             <div class="card-body card-widget-separator">

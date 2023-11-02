@@ -1,5 +1,5 @@
 <x-auth.layout>
-    <x-slot name="title">Transaction Library - Generalbook</x-slot>
+    <x-slot name="title">Transaction Library - Textbooks</x-slot>
     @include('layouts.table')
 
     <div class="card mb-4">

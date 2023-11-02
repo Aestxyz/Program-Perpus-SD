@@ -12,64 +12,6 @@ use Illuminate\Support\Str;
 
 class TransactionController extends Controller
 {
-    public function index()
-    {
-        $transaction =  Transaction::where('label', 'generalbook')
-            ->latest()
-            ->get();
-
-        $walking = $transaction->where('status', 'Berjalan');
-        $penalty = $transaction->where('status', 'Terlambat');
-        $finished = $transaction->where('status', 'Selesai');
-
-        $users = User::where('role', 'Anggota')
-        ->select('id', 'name')
-        ->get();
-        
-        $books = Book::whereType('Umum')->get();
-
-        $borrow_date = Carbon::now()->format('Y-m-d');
-        $return_date = Carbon::now()->addDays(7)->format('Y-m-d');
-
-        return view('transaction.generalbook', [
-            'walking' => $walking,
-            'penalty' => $penalty,
-            'finished' => $finished,
-            'borrow_date' => $borrow_date,
-            'return_date' => $return_date,
-            'users' => $users,
-            'books' => $books,
-        ]);
-    }
-    public function textbook()
-    {
-        $walking = Transaction::where('status', 'Berjalan')
-            ->latest()
-            ->get();
-        $penalty = Transaction::where('status', 'Terlambat')
-            ->latest()
-            ->get();
-        $finished = Transaction::where('status', 'Selesai')
-            ->latest()
-            ->get();
-
-        $borrow_date = Carbon::now()->format('Y-m-d');
-
-        $return_date = Carbon::now()->addDays(7)->format('Y-m-d');
-
-        $users = User::select('id', 'name')->get();
-        $books = Book::whereType('Paket')->get();
-
-        return view('transaction.textbook', [
-            'walking' => $walking,
-            'penalty' => $penalty,
-            'finished' => $finished,
-            'borrow_date' => $borrow_date,
-            'return_date' => $return_date,
-            'users' => $users,
-            'books' => $books,
-        ]);
-    }
     public function store(TransactionRequest $request)
     {
         // dd($request->all());
