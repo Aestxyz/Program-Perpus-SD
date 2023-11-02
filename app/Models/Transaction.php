@@ -12,7 +12,8 @@ class Transaction extends Model
     use HasFactory;
 
     protected $with = [
-        'user'
+        'user',
+        'books'
     ];
 
     protected $fillable = [
@@ -20,7 +21,8 @@ class Transaction extends Model
         'user_id',
         'borrow_date',
         'return_date',
-        'status'
+        'status',
+        'label'
     ];
 
     /**

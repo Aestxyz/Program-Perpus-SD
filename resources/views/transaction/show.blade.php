@@ -19,36 +19,42 @@
                         Perpustakaan</h4>
                 </div>
                 </button>
-                <div class="row m-5">
-                    <div class="col-md">
-                        <p class="card-text">Nama : {{ $item->user->name }}</p>
-                        <p class="card-text">Telp : {{ $item->user->telp }}</p>
+                <div class="row">
+                    <div class="col-12 col-lg-8">
+                        <div class="card">
+                            <div class="card-body text-start">
+                                <ul class="list-unstyled mt-2">
+                                    @foreach ($item->books as $no => $book)
+                                        <li class="text-wrap mb-3">Buku : {{ $book->title }}</li>
+                                    @endforeach
+                                    <li>Tanggal Pinjam : {{ $item->borrow_date }}</li>
+                                    <li>Tanggal Kembali : {{ $item->return_date }}</li>
+                                    <li>Status : {{ $item->status }}</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md">
-                        <p class="card-text">NIS/Etc. : {{ $item->user->identify }}</p>
-                        <p class="card-text">Jenis Kelamin : {{ $item->user->gender }}</p>
+                    <div class="col-12 col-lg-4 text-start">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-start align-items-center mb-4">
+                                    <div class="d-flex flex-column">
+                                        <a href="app-user-view-account.html">
+                                            <h6 class="mb-1">{{ $item->user->name }}</h6>
+                                        </a>
+                                        <small>{{ $item->user->role }}</small>
+                                    </div>
+                                </div>
+                                <p class=" mb-1">Email : {{ $item->user->email }}</p>
+                                <p class=" mb-0">Telp : {{ $item->user->telp }}</p>
+                                <p class=" mb-0">NIS/Etc. : {{ $item->user->identify }}</p>
+                                <p class=" mb-0">Tanggal Lahir. : {{ $item->user->birthdate }}</p>
+                                <p class=" mb-0">Jenis Kelamin : {{ $item->user->gender }}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="table-responsive">
-                    <table class="table border">
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>judul</th>
-                                <th>kategori buku</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($item->books as $no => $book)
-                                <tr>
-                                    <td>{{ ++$no }}.</td>
-                                    <td>{{ $book->title }}</td>
-                                    <td><span class="badge bg-secondary">{{ $book->category->name }}</span></td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+
             </div>
         </div>
     </div>

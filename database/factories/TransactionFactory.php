@@ -7,6 +7,7 @@ use App\Models\Book;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 
 class TransactionFactory extends Factory
 {
@@ -23,7 +24,8 @@ class TransactionFactory extends Factory
             'user_id' => User::all()->random(),
             'borrow_date' => $now->addDays(7),
             'return_date' => $now->addDays(14),
-            'status' => $this->faker->randomElement(['Menunggu', 'Berjalan', 'Terlambat'])
+            'status' => $this->faker->randomElement(['Menunggu', 'Berjalan', 'Terlambat']),
+            'label' => Arr::random(['textbook', 'generalbook'])
         ];
     }
 

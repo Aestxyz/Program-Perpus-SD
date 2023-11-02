@@ -20,6 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->date('return_date')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->enum('status', ['Menunggu', 'Berjalan', 'Terlambat', 'Selesai', 'Tolak']);
+            $table->enum('label', ['textbook', 'generalbook']);
             $table->timestamps();
         });
     }

@@ -14,22 +14,22 @@ class TransactionController extends Controller
 {
     public function index()
     {
-        $walking = Transaction::where('status', 'Berjalan')
-            ->orderBy('updated_at', 'DESC')
+        $transaction =  Transaction::where('label', 'generalbook')
+            ->latest()
             ->get();
-        $penalty = Transaction::where('status', 'Terlambat')
-            ->orderBy('updated_at', 'DESC')
-            ->get();
-        $finished = Transaction::where('status', 'Selesai')
-            ->orderBy('updated_at', 'DESC')
-            ->get();
+
+        $walking = $transaction->where('status', 'Berjalan');
+        $penalty = $transaction->where('status', 'Terlambat');
+        $finished = $transaction->where('status', 'Selesai');
+
+        $users = User::where('role', 'Anggota')
+        ->select('id', 'name')
+        ->get();
+        
+        $books = Book::whereType('Umum')->get();
 
         $borrow_date = Carbon::now()->format('Y-m-d');
-
         $return_date = Carbon::now()->addDays(7)->format('Y-m-d');
-
-        $users = User::select('id', 'name')->get();
-        $books = Book::whereType('Umum')->get();
 
         return view('transaction.generalbook', [
             'walking' => $walking,
@@ -44,13 +44,13 @@ class TransactionController extends Controller
     public function textbook()
     {
         $walking = Transaction::where('status', 'Berjalan')
-            ->orderBy('updated_at', 'DESC')
+            ->latest()
             ->get();
         $penalty = Transaction::where('status', 'Terlambat')
-            ->orderBy('updated_at', 'DESC')
+            ->latest()
             ->get();
         $finished = Transaction::where('status', 'Selesai')
-            ->orderBy('updated_at', 'DESC')
+            ->latest()
             ->get();
 
         $borrow_date = Carbon::now()->format('Y-m-d');
@@ -72,6 +72,7 @@ class TransactionController extends Controller
     }
     public function store(TransactionRequest $request)
     {
+        // dd($request->all());
         $validate = $request->validated();
 
         $transaction = Transaction::where('user_id', $request->user_id)
@@ -95,26 +96,13 @@ class TransactionController extends Controller
             $user = User::findOrFail($request->user_id);
 
             $validate['code'] = $user->slug . '-' . Str::random(10);
+            $validate['label'] = 'generalbook';
+            $data = Transaction::create($validate);
+            $data->books()->attach($request->book_id);
 
-            Transaction::create($validate);
 
             return back()->with('success', 'Proses penambahan data telah berhasil dilakukan.');
         }
-    }
-
-    public function confirmation(Request $request, $id)
-    {
-        $validate = $request->validate([
-            'status' => 'required|string',
-            'borrow_date' => 'required|date',
-            'return_date' => 'required|date',
-        ]);
-
-        $transaction = Transaction::findOrfail($id);
-
-        $transaction->update($validate);
-
-        return back()->with('success', 'Proses penambahan data peminjaman dan pengembalian buku berhasil telah berhasil dilakukan.');
     }
     public function finished($id)
     {
@@ -132,20 +120,35 @@ class TransactionController extends Controller
         return back()->with('success', 'Proses peminjaman dan pengembalian buku telah selesai dilakukan.');
     }
 
-    public function reject($id)
-    {
-        $transaction = Transaction::findOrfail($id);
+    // public function confirmation(Request $request, $id)
+    // {
+    //     $validate = $request->validate([
+    //         'status' => 'required|string',
+    //         'borrow_date' => 'required|date',
+    //         'return_date' => 'required|date',
+    //     ]);
 
-        $transaction->update([
-            'status' => 'Tolak',
-            'borrow_date' => null,
-            'return_date' => null,
-        ]);
+    //     $transaction = Transaction::findOrfail($id);
 
-        $book = Book::findOrfail($transaction->book->id);
-        $book->book_count++;
-        $book->save();
+    //     $transaction->update($validate);
 
-        return back()->with('success', 'Proses peminjaman dan pengembalian buku berhasil di tolak.');
-    }
+    //     return back()->with('success', 'Proses penambahan data peminjaman dan pengembalian buku berhasil telah berhasil dilakukan.');
+    // }
+
+    // public function reject($id)
+    // {
+    //     $transaction = Transaction::findOrfail($id);
+
+    //     $transaction->update([
+    //         'status' => 'Tolak',
+    //         'borrow_date' => null,
+    //         'return_date' => null,
+    //     ]);
+
+    //     $book = Book::findOrfail($transaction->book->id);
+    //     $book->book_count++;
+    //     $book->save();
+
+    //     return back()->with('success', 'Proses peminjaman dan pengembalian buku berhasil di tolak.');
+    // }
 }

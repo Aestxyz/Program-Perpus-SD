@@ -88,17 +88,6 @@
                 <div data-i18n="books">Buku</div>
             </a>
         </li>
-
-        <li class="menu-item {{ request()->is('transactions') ? 'active' : '' }}">
-            <a href="/transactions" class="menu-link">
-                <i class="menu-icon tf-icons mdi mdi-sync-circle"></i>
-                <div data-i18n="transactions">Transaksi</div>
-                <div class="badge bg-danger rounded-pill ms-auto {{ $late_days == null ? 'd-none' : '' }}">
-                    {{ $late_days }}
-                </div>
-            </a>
-        </li>
-
         <li
             class="menu-item {{ request()->is(['/transactions/generalbooks', '/transactions/textbooks']) ? 'active' : '' }}">
             <a href="/transactions" class="menu-link menu-toggle">
