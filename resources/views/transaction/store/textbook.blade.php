@@ -1,4 +1,5 @@
-<form action="{{ route('transactions.store') }}" method="post">
+@include('layouts.select2')
+<form action="{{ route('textbooks.store') }}" method="post">
     @csrf
     <input type="hidden" name="status" value="Berjalan">
     <div class="card-body">
@@ -17,14 +18,12 @@
             <div class="col-md">
                 <div class="mb-3">
                     <label for="book_id" class="form-label">Buku</label>
-                    <select class="form-select" name="book_id" id="book_id">
-                        <option selected>Select one</option>
+                    <select id="select2Multiple" class="select2 form-select bg-body" name="book_id[]" multiple>
                         @foreach ($books as $book)
-                            <option
-                                class="text-truncate
-                            {{ $book->book_count == 0 ? 'text-danger' : '' }}"
-                                value="{{ $book->id }}" {{ $book->book_count == 0 ? 'disabled' : '' }}>-
-                                {{ $book->title }} : {{ $book->book_count }}</option>
+                            <option class="text-truncate {{ $book->book_count == 0 ? 'text-danger' : '' }}"
+                                    value="{{ $book->id }}" {{ $book->book_count == 0 ? 'disabled' : '' }}>
+                                {{ $book->title }} : {{ $book->book_count }}
+                            </option>
                         @endforeach
                     </select>
                 </div>

@@ -21,7 +21,7 @@ class PenaltyController extends Controller
         }
 
         $dont_payment = Transaction::where('status', 'Terlambat')
-            ->orderBy('updated_at', 'DESC')
+            ->latest()
             ->get();
 
         return view('penalty.index', [

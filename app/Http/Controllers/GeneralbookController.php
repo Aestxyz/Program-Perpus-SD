@@ -6,7 +6,9 @@ use Carbon\Carbon;
 use App\Models\Book;
 use App\Models\User;
 use App\Models\Transaction;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Requests\TransactionRequest;
 
 class GeneralbookController extends Controller
 {
@@ -21,8 +23,8 @@ class GeneralbookController extends Controller
         $finished = $transaction->where('status', 'Selesai');
 
         $users = User::where('role', 'Anggota')
-        ->select('id', 'name')
-        ->get();
+            ->select('id', 'name')
+            ->get();
 
         $books = Book::whereType('Umum')->get();
 
@@ -38,5 +40,40 @@ class GeneralbookController extends Controller
             'users' => $users,
             'books' => $books,
         ]);
+    }
+
+    public function store(TransactionRequest $request)
+    {
+        // dd($request->all());
+        $validate = $request->validated();
+
+        $transaction = Transaction::where('label', 'textbook')
+            ->where('user_id', $request->user_id)
+            ->where(function ($query) {
+                $query->where('status', 'Berjalan')
+                    ->orWhere('status', 'Terlambat');
+            })->orWhere(function ($query) {
+                $query->where('status', 'Berjalan')
+                    ->Where('status', 'Terlambat');
+            })
+            ->count();
+
+
+        if ($transaction >= 3) {
+            return back()->with('warning', 'Peminjaman melebihi batas yang telah ditentukan 😀');
+        } else {
+
+            $user = User::findOrFail($request->user_id);
+
+            $validate['code'] = $user->slug . '-' . Str::random(10);
+            $validate['label'] = 'generalbook';
+            $data = Transaction::create($validate);
+
+            $data->books()->attach($request->book_id);
+
+            Book::whereIn('id', $request->book_id)->decrement('book_count');
+
+            return back()->with('success', 'Proses penambahan data telah berhasil dilakukan.');
+        }
     }
 }

@@ -1,4 +1,4 @@
-<form action="{{ route('transactions.store') }}" method="post">
+<form action="{{ route('generalbooks.store') }}" method="post">
     @csrf
     <input type="hidden" name="status" value="Berjalan">
     <div class="card-body">

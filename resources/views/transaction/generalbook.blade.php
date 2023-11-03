@@ -54,7 +54,7 @@
     </div>
     <div class="card mb-3">
         <h5 class="card-header mb-0 pb-0">Tambah Peminjaman Buku</h5>
-        @include('transaction.store')
+        @include('transaction.store.generalbook')
     </div>
 
     <div class="nav-align-top mb-3">

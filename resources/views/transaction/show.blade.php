@@ -19,42 +19,64 @@
                         Perpustakaan</h4>
                 </div>
                 </button>
-                <div class="row">
-                    <div class="col-12 col-lg-8">
-                        <div class="card">
-                            <div class="card-body text-start">
-                                <ul class="list-unstyled mt-2">
-                                    @foreach ($item->books as $no => $book)
-                                        <li class="text-wrap mb-3">Buku : {{ $book->title }}</li>
-                                    @endforeach
-                                    <li>Tanggal Pinjam : {{ $item->borrow_date }}</li>
-                                    <li>Tanggal Kembali : {{ $item->return_date }}</li>
-                                    <li>Status : {{ $item->status }}</li>
-                                </ul>
+                <div class="row gap-3 text-start">
+                    <div class="col-md">
+                        <div class="card text-wrap">
+                            <div class="card-body rounded shadow">
+                                <h4 class="card-title text-truncate">Transaksi</h4>
+                                <dl class="row">
+                                    <dt class="col-sm-4">Buku</dt>
+                                    <dd class="col-sm-8">
+                                        <ul>
+                                            @foreach ($item->books as $book)
+                                                <li>{{ $book->title }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </dd>
+
+                                    <dt class="col-sm-4">Status</dt>
+                                    <dd class="col-sm-8">
+                                        <span class="badge bg-label-primary">{{ $item->status }}</span>
+                                    </dd>
+
+                                    <dt class="col-sm-4">Tgl. Pinjam</dt>
+                                    <dd class="col-sm-8">
+                                        {{ $item->borrow_date }}
+                                    </dd>
+
+                                    <dt class="col-sm-4">Tgl. Kembali</dt>
+                                    <dd class="col-sm-8">
+                                        {{ $item->return_date }}
+                                    </dd>
+                                </dl>
+                            </div>
+                            <div class="col-12 col-md-6">
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-4 text-start">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="d-flex justify-content-start align-items-center mb-4">
-                                    <div class="d-flex flex-column">
-                                        <a href="app-user-view-account.html">
-                                            <h6 class="mb-1">{{ $item->user->name }}</h6>
-                                        </a>
-                                        <small>{{ $item->user->role }}</small>
-                                    </div>
-                                </div>
-                                <p class=" mb-1">Email : {{ $item->user->email }}</p>
-                                <p class=" mb-0">Telp : {{ $item->user->telp }}</p>
-                                <p class=" mb-0">NIS/Etc. : {{ $item->user->identify }}</p>
-                                <p class=" mb-0">Tanggal Lahir. : {{ $item->user->birthdate }}</p>
-                                <p class=" mb-0">Jenis Kelamin : {{ $item->user->gender }}</p>
-                            </div>
+                    <div class="col-md">
+                        <div class="card-body rounded shadow">
+                            <h4 class="card-title text-truncate">User</h4>
+                            <dl class="row">
+                                <dt class="col-sm-4">nama</dt>
+                                <dd class="col-sm-8">{{ $item->user->name }}</dd>
+                                <dt class="col-sm-4">role</dt>
+                                <dd class="col-sm-8">{{ $item->user->role }}</dd>
+
+                                <dt class="col-sm-4">Email</dt>
+                                <dd class="col-sm-8">{{ $item->user->email }}</dd>
+                                <dt class="col-sm-4">Telp</dt>
+                                <dd class="col-sm-8">{{ $item->user->telp }}</dd>
+                                <dt class="col-sm-4">NIS/Etc.</dt>
+                                <dd class="col-sm-8">{{ $item->user->identify }}</dd>
+                                <dt class="col-sm-4">Tgl. Lahir</dt>
+                                <dd class="col-sm-8">{{ $item->user->birthdate }}</dd>
+                                <dt class="col-sm-4">Jenis Kelamin</dt>
+                                <dd class="col-sm-8">{{ $item->user->gender }}</dd>
+                            </dl>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

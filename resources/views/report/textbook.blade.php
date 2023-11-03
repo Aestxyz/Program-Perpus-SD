@@ -1,5 +1,5 @@
 <x-auth.layout>
-    <x-slot name="title">Transaction Library Report</x-slot>
+    <x-slot name="title">Transaction Library Report Textbook</x-slot>
     @include('layouts.report')
     <div class="card">
         <div class="card-body table-responsive">
@@ -23,7 +23,13 @@
                             <td>{{ ++$no }}</td>
                             <td>{{ $transaction->code }}</td>
                             <td>{{ $transaction->user->name }}</td>
-                            <td>{{ $transaction->book->title }}</td>
+                            <td>
+                                <ul>
+                                    @foreach ($transaction->books as $book)
+                                        <li>{{ $book->title }}</li>
+                                    @endforeach
+                                </ul>
+                            </td>
                             <td>{{ $transaction->borrow_date }}</td>
                             <td>{{ $transaction->return_date }}</td>
                             <td>{{ $transaction->status }}</td>

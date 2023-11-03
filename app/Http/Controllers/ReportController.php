@@ -7,11 +7,18 @@ use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
-    public function index()
+    public function generalbook()
     {
-        $transactions = Transaction::get();
-        return view('transaction.report', [
-            'transactions' => Transaction::latest()->get(),
+        $transactions = Transaction::whereLabel('generalbook')->latest()->get();
+        return view('report.generalbook', [
+            'transactions' => $transactions,
+        ]);
+    }
+    public function textbook()
+    {
+        $transactions = Transaction::whereLabel('textbook')->latest()->get();
+        return view('report.textbook', [
+            'transactions' => $transactions,
         ]);
     }
 }

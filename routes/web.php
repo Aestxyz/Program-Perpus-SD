@@ -74,9 +74,12 @@ Route::middleware(['auth', 'role:Petugas,Kepala'])->group(function () {
     });
 
     Route::prefix('transactions')->group(function () {
-        Route::get('/generalbooks', [GeneralbookController::class, 'index'])->name('transactions.generalbooks');
-        Route::get('/textbooks', [TextbookController::class, 'index'])->name('transactions.textbooks');
-        Route::post('/', [TransactionController::class, 'store'])->name('transactions.store');
+        Route::get('/generalbooks', [GeneralbookController::class, 'index'])->name('generalbooks.index');
+        Route::post('/generalbooks', [GeneralbookController::class, 'store'])->name('generalbooks.store');
+
+        Route::get('/textbooks', [TextbookController::class, 'index'])->name('textbooks.index');
+        Route::post('/textbooks', [TextbookController::class, 'store'])->name('textbooks.store');
+
         Route::get('/{id}/show', [TransactionController::class, 'show'])->name('transactions.show');
         Route::put('/{id}', [TransactionController::class, 'update'])->name('transactions.update');
         Route::delete('/{id}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
@@ -93,7 +96,10 @@ Route::middleware(['auth', 'role:Petugas,Kepala'])->group(function () {
         Route::post('/', [PenaltyController::class, 'store'])->name('penalties.store');
     });
 
-    Route::get('/reports', [ReportController::class, 'index'])->name('reports');
+    Route::prefix('/reports')->group(function () {
+        Route::get('/generalbook', [ReportController::class, 'generalbook'])->name('reports.generalbook');
+        Route::get('/textbook', [ReportController::class, 'textbook'])->name('reports.textbook');
+    });
 });
 
 // Route::middleware(['auth', 'role:Anggota'])->group(function () {
