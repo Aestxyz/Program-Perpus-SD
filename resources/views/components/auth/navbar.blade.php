@@ -7,68 +7,60 @@
     </li>
 
     @if (Auth()->user()->role == 'Kepala')
-        {{-- <li class="menu-item {{ request()->is(['users', 'confirmation-account']) ? 'active' : '' }}">
-            <a href="/users" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons mdi mdi-human"></i>
-                <div data-i18n="Users">Users</div>
-                <div class="badge bg-danger rounded-pill ms-auto {{ $pending == null ? 'd-none' : '' }}">
-                    {{ $pending }}
+        <li
+            class="menu-item {{ request()->is(['/transactions/generalbooks', '/transactions/textbooks']) ? 'active' : '' }}">
+            <a href="/transactions" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons mdi mdi-sync-circle"></i>
+                <div data-i18n="transactions">Transaksi</div>
+                <div class="badge bg-danger rounded-pill ms-auto {{ $late_days == null ? 'd-none' : '' }}">
+                    {{ $late_days }}
                 </div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('users.index') }}" class="menu-link">
-                        <div data-i18n="Data-User">Data User</div>
+                    <a href="{{ route('generalbooks.index') }}" class="menu-link">
+                        <div data-i18n="Data-User">Buku Umum</div>
+                        <div class="badge bg-danger rounded-pill ms-auto {{ $late_days == null ? 'd-none' : '' }}">
+                            {{ $late_days }}
+                        </div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('confirmations.index') }}" class="menu-link">
-                        <div data-i18n="Konfirmasi-Akun">Konfirmasi Akun</div>
-                        <div class="badge bg-danger rounded-pill ms-auto {{ $pending == null ? 'd-none' : '' }}">
-                            {{ $pending }}
+                    <a href="{{ route('textbooks.index') }}" class="menu-link">
+                        <div data-i18n="Konfirmasi-Akun">Buku Paket</div>
+                        <div class="badge bg-danger rounded-pill ms-auto {{ $late_days == null ? 'd-none' : '' }}">
+                            {{ $late_days }}
                         </div>
                     </a>
                 </li>
             </ul>
-        </li> --}}
-
+        </li>
         <li class="menu-item {{ request()->is('users') ? 'active' : '' }}">
             <a href="/users" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-human"></i>
                 <div data-i18n="users">Users</div>
             </a>
         </li>
-        <li class="menu-item {{ request()->is('reports') ? 'active' : '' }}">
-            <a href="/reports" class="menu-link">
-                <i class="menu-icon tf-icons mdi mdi-cash"></i>
-                <div data-i18n="reports">Laporan</div>
-            </a>
-        </li>
-    @else
-        {{-- <li class="menu-item {{ request()->is(['users', 'confirmation-account']) ? 'active' : '' }}">
-            <a href="/users" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons mdi mdi-human"></i>
-                <div data-i18n="Users">Users</div>
-                <div class="badge bg-danger rounded-pill ms-auto {{ $pending == null ? 'd-none' : '' }}">
-                    {{ $pending }}
-                </div>
+        <li
+            class="menu-item {{ request()->is(['/transactions/generalbooks', '/transactions/textbooks']) ? 'active' : '' }}">
+            <a href="/transactions" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons mdi mdi-file"></i>
+                <div data-i18n="transactions">Laporan</div>
             </a>
             <ul class="menu-sub">
                 <li class="menu-item">
-                    <a href="{{ route('users.index') }}" class="menu-link">
-                        <div data-i18n="Data-User">Data User</div>
+                    <a href="{{ route('reports.generalbook') }}" class="menu-link">
+                        <div data-i18n="Data-User">Laporan Buku Umum</div>
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('confirmations.index') }}" class="menu-link">
-                        <div data-i18n="Konfirmasi-Akun">Konfirmasi Akun</div>
-                        <div class="badge bg-danger rounded-pill ms-auto {{ $pending == null ? 'd-none' : '' }}">
-                            {{ $pending }}
-                        </div>
+                    <a href="{{ route('reports.textbook') }}" class="menu-link">
+                        <div data-i18n="Konfirmasi-Akun">:aporan Buku Paket</div>
                     </a>
                 </li>
             </ul>
-        </li> --}}
+        </li>
+    @else
         <li class="menu-item {{ request()->is('users') ? 'active' : '' }}">
             <a href="/users" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-human"></i>
