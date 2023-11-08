@@ -14,7 +14,7 @@
                         <th>Tanggal Kembali</th>
                         <th>Status</th>
                         <th>Denda</th>
-                        <th>Jumlah Hari</th>
+                        {{-- <th>Jumlah Hari Terlewat</th> --}}
                     </tr>
                 </thead>
                 <tbody>
@@ -40,13 +40,13 @@
                                     -
                                 @endforelse
                             </td>
-                            <td>
+                            {{-- <td>
                                 @forelse  ($transaction->penalties as $penalty)
                                     {{ $penalty->lates_day . ' Hari' }}
                                 @empty
                                     -
                                 @endforelse
-                            </td>
+                            </td> --}}
                         </tr>
                     @endforeach
                 </tbody>
