@@ -1,6 +1,7 @@
 @include('layouts.select2')
-<form action="{{ route('textbooks.store') }}" method="post">
+<form action="{{ route('textbooks.update', $transaction->id) }}" method="post">
     @csrf
+    @method('PUT')
     <input type="hidden" name="status" value="Berjalan">
     <div class="card-body">
         <div class="row">
@@ -8,11 +9,10 @@
                 <div class="mb-3">
                     <label for="user_id" class="form-label">Nama Lengkap</label>
                     <select class="form-select" name="user_id" id="user_id">
-                        <option >Select one</option>
+                        <option>Select one</option>
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}"
-                                {{ $transaction->user->id == $user->id ? 'selected' : '' }}
-                                >-
+                                {{ $transaction->user->id == $user->id ? 'selected' : '' }}>-
                                 {{ $user->name }}</option>
                         @endforeach
                     </select>
@@ -23,10 +23,13 @@
                     <label for="book_id" class="form-label">Buku</label>
                     <select id="select2Multiple" class="select2 form-select bg-body" name="book_id[]" multiple>
                         @foreach ($books as $book)
-                            <option class="text-truncate {{ $book->book_count == 0 ? 'text-danger' : '' }}"
-                                value="{{ $book->id }}" {{ $book->book_count == 0 ? 'disabled' : '' }}>
-                                {{ $book->title }} : {{ $book->book_count }}
-                            </option>
+                            @foreach ($transaction->books as $item)
+                                <option class="text-truncate {{ $book->book_count == 0 ? 'text-danger' : '' }}"
+                                    value="{{ $book->id }}" {{ $book->book_count == 0 ? 'disabled' : '' }}
+                                    {{ $book->id == $item->id ? 'selected' : '' }}>
+                                    {{ $book->title }} : {{ $book->book_count }}
+                                </option>
+                            @endforeach
                         @endforeach
                     </select>
                 </div>

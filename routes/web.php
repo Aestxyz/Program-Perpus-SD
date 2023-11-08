@@ -53,10 +53,10 @@ Route::middleware(['auth', 'role:Petugas,Kepala'])->group(function () {
         Route::delete('/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     });
 
-    Route::prefix('confirmation-account')->group(function () {
-        Route::get('/', [ConfirmationAccountController::class, 'index'])->name('confirmations.index');
-        Route::put('/{id}/accept', [ConfirmationAccountController::class, 'accept'])->name('confirmations.accept');
-    });
+    // Route::prefix('confirmation-account')->group(function () {
+    //     Route::get('/', [ConfirmationAccountController::class, 'index'])->name('confirmations.index');
+    //     Route::put('/{id}/accept', [ConfirmationAccountController::class, 'accept'])->name('confirmations.accept');
+    // });
 
     Route::prefix('categories')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
@@ -76,18 +76,18 @@ Route::middleware(['auth', 'role:Petugas,Kepala'])->group(function () {
     Route::prefix('transactions')->group(function () {
         Route::get('/generalbooks', [GeneralbookController::class, 'index'])->name('generalbooks.index');
         Route::post('/generalbooks', [GeneralbookController::class, 'store'])->name('generalbooks.store');
+        Route::put('/generalbooks/{id}', [GeneralbookController::class, 'update'])->name('generalbooks.update');
+
 
         Route::get('/textbooks', [TextbookController::class, 'index'])->name('textbooks.index');
         Route::post('/textbooks', [TextbookController::class, 'store'])->name('textbooks.store');
+        Route::put('/textbooks/{id}', [TextbookController::class, 'update'])->name('textbooks.update');
 
-        Route::get('/{id}/show', [TransactionController::class, 'show'])->name('transactions.show');
-        Route::put('/{id}', [TransactionController::class, 'update'])->name('transactions.update');
+
         Route::delete('/{id}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
+        Route::get('/{id}/show', [TransactionController::class, 'show'])->name('transactions.show');
 
         Route::put('/{id}/finished', [TransactionController::class, 'finished'])->name('transactions.finished');
-
-        // Route::put('/{id}/confirmation', [TransactionController::class, 'confirmation'])->name('transactions.confirmation');
-        // Route::put('/{id}/reject', [TransactionController::class, 'reject'])->name('transactions.reject');
     });
 
     Route::prefix('penalties')->group(function () {

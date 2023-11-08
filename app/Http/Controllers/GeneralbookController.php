@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TextbookRequest;
 use Carbon\Carbon;
 use App\Models\Book;
 use App\Models\User;
@@ -74,4 +75,29 @@ class GeneralbookController extends Controller
             return back()->with('success', 'Proses penambahan data telah berhasil dilakukan.');
         }
     }
+
+    public function update(TextbookRequest $request, $id)
+    {
+        $validate = $request->validated();
+
+        $transaction = Transaction::findOrFail($id);
+
+        $transaction->update($validate);
+
+        // Check if there are new books to be attached
+        if ($request->book_id) {
+            $transaction->books()->sync($request->book_id);
+
+            // Decrease book_count for the newly added books
+            Book::whereIn('id', $request->book_id)->decrement('book_count');
+        }
+
+        // Check if any books were detached
+        if ($transaction->books()->whereNotIn('id', $request->book_id)->get()) {
+            Book::whereIn('id', $transaction->books()->whereNotIn('id', $request->book_id)->pluck('id'))->increment('book_count');
+        }
+
+        return back()->with('success', 'Data telah diperbarui dengan sukses.');
+    }
+
 }

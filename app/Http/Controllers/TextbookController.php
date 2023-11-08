@@ -9,6 +9,7 @@ use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TextbookRequest;
 use App\Http\Requests\TransactionRequest;
 
 class TextbookController extends Controller
@@ -43,16 +44,9 @@ class TextbookController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(TextbookRequest $request)
     {
-        $validate = $this->validate($request, [
-            'book_id' => 'required|array',
-            'book_id.*' => 'required|exists:books,id',
-            'user_id' => 'required|exists:users,id',
-            'borrow_date' => 'nullable|date',
-            'return_date' => 'nullable|date|after:borrow_date',
-            'status' => 'required|in:Berjalan,Terlambat',
-        ]);
+        $validate = $request->validated();
 
         $transaction = Transaction::where('label', 'textbook')
             ->where('user_id', $request->user_id)
@@ -86,4 +80,29 @@ class TextbookController extends Controller
             return back()->with('success', 'Proses penambahan data telah berhasil dilakukan.');
         }
     }
+
+    public function update(TextbookRequest $request, $id)
+    {
+        $validate = $request->validated();
+
+        $transaction = Transaction::findOrFail($id);
+
+        $transaction->update($validate);
+
+        // Check if there are new books to be attached
+        if ($request->book_id) {
+            $transaction->books()->sync($request->book_id);
+
+            // Decrease book_count for the newly added books
+            Book::whereIn('id', $request->book_id)->decrement('book_count');
+        }
+
+        // Check if any books were detached
+        if ($transaction->books()->whereNotIn('id', $request->book_id)->get()) {
+            Book::whereIn('id', $transaction->books()->whereNotIn('id', $request->book_id)->pluck('id'))->increment('book_count');
+        }
+
+        return back()->with('success', 'Data telah diperbarui dengan sukses.');
+    }
+
 }

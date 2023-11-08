@@ -51,28 +51,12 @@ class TransactionController extends Controller
             $book->book_count++;
             $book->save();
         }
-
         $transaction->delete();
-        return redirect()->route('transactions.index')->with('success', 'Proses penghapusan data telah berhasil dilakukan.');
-    }
 
-    public function update(Request $request, $id)
-    {
-        $validate = $this->validate($request, [
-            'book_id' => 'required|array',
-            'book_id.*' => 'required|exists:books,id',
-            'user_id' => 'required|exists:users,id',
-            'borrow_date' => 'nullable|date',
-            'return_date' => 'nullable|date|after:borrow_date',
-            'status' => 'required|in:Berjalan,Terlambat',
-        ]);
-
-        $transaction = Transaction::findOrFail($id);
-        foreach ($transaction->books as $book) {
-            $book = Book::findOrfail($book->id);
-            $book->book_count++;
-            $book->save();
+        if ($transaction->label == 'textbook') {
+            return redirect()->route('textbooks.index')->with('success', 'Proses penghapusan data telah berhasil dilakukan.');
+        } else {
+            return redirect()->route('generalbooks.index')->with('success', 'Proses penghapusan data telah berhasil dilakukan.');
         }
-
     }
 }

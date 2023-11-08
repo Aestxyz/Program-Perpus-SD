@@ -1,4 +1,4 @@
-<form action="{{ route('transactions.update', $transaction->id) }}" method="post">
+<form action="{{ route('generalbooks.update', $transaction->id) }}" method="post">
     @csrf
     @method('PUT')
     <input type="hidden" name="status" value="Berjalan">
