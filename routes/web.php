@@ -53,11 +53,6 @@ Route::middleware(['auth', 'role:Petugas,Kepala'])->group(function () {
         Route::delete('/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     });
 
-    // Route::prefix('confirmation-account')->group(function () {
-    //     Route::get('/', [ConfirmationAccountController::class, 'index'])->name('confirmations.index');
-    //     Route::put('/{id}/accept', [ConfirmationAccountController::class, 'accept'])->name('confirmations.accept');
-    // });
-
     Route::prefix('categories')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
         Route::post('/', [CategoryController::class, 'store'])->name('categories.store');
@@ -101,14 +96,3 @@ Route::middleware(['auth', 'role:Petugas,Kepala'])->group(function () {
         Route::get('/textbook', [ReportController::class, 'textbook'])->name('reports.textbook');
     });
 });
-
-// Route::middleware(['auth', 'role:Anggota'])->group(function () {
-//     Route::prefix('catalog-books')->group(function () {
-//         Route::post('/', [CatalogController::class, 'store'])->name('catalog.store');
-//         Route::get('/{id}/process', [CatalogController::class, 'process'])->name('catalog.process');
-//         Route::get('/history', [CatalogController::class, 'history'])->name('catalog.history');
-//     });
-// });
-
-// Route::get('/catalog-books', [CatalogController::class, 'index'])->name('catalog.index');
-// Route::get('/catalog-books/{id}/show', [CatalogController::class, 'show'])->name('catalog.show');

@@ -24,11 +24,12 @@ class TransactionRequest extends FormRequest
     public function rules()
     {
         return [
-            'book_id' => 'required|exists:books,id',
+            'book_id' => 'required|array',
+            'book_id.*' => 'required|exists:books,id',
             'user_id' => 'required|exists:users,id',
             'borrow_date' => 'nullable|date',
             'return_date' => 'nullable|date|after:borrow_date',
-            'status' => 'required|in:Menunggu,Berjalan,Terlambat',
+            'status' => 'required|in:Berjalan,Terlambat',
         ];
     }
 }

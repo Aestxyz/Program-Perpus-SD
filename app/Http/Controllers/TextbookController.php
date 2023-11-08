@@ -9,7 +9,6 @@ use App\Models\Transaction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TextbookRequest;
 use App\Http\Requests\TransactionRequest;
 
 class TextbookController extends Controller
@@ -44,7 +43,7 @@ class TextbookController extends Controller
         ]);
     }
 
-    public function store(TextbookRequest $request)
+    public function store(TransactionRequest $request)
     {
         $validate = $request->validated();
 
@@ -81,7 +80,7 @@ class TextbookController extends Controller
         }
     }
 
-    public function update(TextbookRequest $request, $id)
+    public function update(TransactionRequest $request, $id)
     {
         $validate = $request->validated();
 

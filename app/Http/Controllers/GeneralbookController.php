@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\TextbookRequest;
 use Carbon\Carbon;
 use App\Models\Book;
 use App\Models\User;
@@ -76,7 +75,7 @@ class GeneralbookController extends Controller
         }
     }
 
-    public function update(TextbookRequest $request, $id)
+    public function update(TransactionRequest $request, $id)
     {
         $validate = $request->validated();
 
