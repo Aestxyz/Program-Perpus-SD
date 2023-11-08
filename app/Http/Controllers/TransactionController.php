@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 
 class TransactionController extends Controller
 {
-    
+
     public function finished($id)
     {
         $transaction = Transaction::findOrfail($id);
@@ -31,35 +31,48 @@ class TransactionController extends Controller
         return back()->with('success', 'Proses peminjaman dan pengembalian buku telah selesai dilakukan.');
     }
 
-    // public function confirmation(Request $request, $id)
-    // {
-    //     $validate = $request->validate([
-    //         'status' => 'required|string',
-    //         'borrow_date' => 'required|date',
-    //         'return_date' => 'required|date',
-    //     ]);
+    public function show($id)
+    {
+        $transaction = Transaction::findOrFail($id);
+        $users = User::select('id', 'name')->get();
+        $books = Book::get();
 
-    //     $transaction = Transaction::findOrfail($id);
+        return view(
+            'transaction.show',
+            compact('transaction', 'users', 'books')
+        );
+    }
+    public function destroy($id)
+    {
+        $transaction = Transaction::findOrFail($id);
 
-    //     $transaction->update($validate);
+        foreach ($transaction->books as $book) {
+            $book = Book::findOrfail($book->id);
+            $book->book_count++;
+            $book->save();
+        }
 
-    //     return back()->with('success', 'Proses penambahan data peminjaman dan pengembalian buku berhasil telah berhasil dilakukan.');
-    // }
+        $transaction->delete();
+        return redirect()->route('transactions.index')->with('success', 'Proses penghapusan data telah berhasil dilakukan.');
+    }
 
-    // public function reject($id)
-    // {
-    //     $transaction = Transaction::findOrfail($id);
+    public function update(Request $request, $id)
+    {
+        $validate = $this->validate($request, [
+            'book_id' => 'required|array',
+            'book_id.*' => 'required|exists:books,id',
+            'user_id' => 'required|exists:users,id',
+            'borrow_date' => 'nullable|date',
+            'return_date' => 'nullable|date|after:borrow_date',
+            'status' => 'required|in:Berjalan,Terlambat',
+        ]);
 
-    //     $transaction->update([
-    //         'status' => 'Tolak',
-    //         'borrow_date' => null,
-    //         'return_date' => null,
-    //     ]);
+        $transaction = Transaction::findOrFail($id);
+        foreach ($transaction->books as $book) {
+            $book = Book::findOrfail($book->id);
+            $book->book_count++;
+            $book->save();
+        }
 
-    //     $book = Book::findOrfail($transaction->book->id);
-    //     $book->book_count++;
-    //     $book->save();
-
-    //     return back()->with('success', 'Proses peminjaman dan pengembalian buku berhasil di tolak.');
-    // }
+    }
 }

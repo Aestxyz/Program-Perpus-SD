@@ -17,7 +17,7 @@
             <div class="col-md">
                 <div class="mb-3">
                     <label for="book_id" class="form-label">Buku</label>
-                    <select class="form-select" name="book_id" id="book_id">
+                    <select class="form-select" name="book_id[]" id="book_id">
                         <option selected>Select one</option>
                         @foreach ($books as $book)
                             <option

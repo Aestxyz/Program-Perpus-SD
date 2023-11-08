@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
         ]);
 
-        Transaction::factory(10)->create();
-        BookTransaction::factory(100)->create();
+        // Transaction::factory(10)->create();
+        // BookTransaction::factory(100)->create();
     }
 }

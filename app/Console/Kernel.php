@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
                 ->where('status', 'Berjalan')
                 ->whereDate('return_date', '<', Carbon::today())
                 ->update(['status' => 'Terlambat']);
-        })->daily(); // ubah ke ->everyMinute(); untuk melakukan test
+        })->everyMinute(); // ubah ke ->everyMinute(); untuk melakukan test
 
         // Menghapus data transaksi berstatus "Batal" setiap tahunnya ->yearly();
 
@@ -34,7 +34,7 @@ class Kernel extends ConsoleKernel
             DB::table('transactions')
                 ->where('status', 'Tolak')
                 ->delete();
-        })->yearly(); // ubah ke ->everyMinute(); untuk melakukan test
+        })->everyMinute(); // ubah ke ->everyMinute(); untuk melakukan test
     }
 
     /**

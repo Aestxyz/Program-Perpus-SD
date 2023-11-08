@@ -44,7 +44,6 @@ class GeneralbookController extends Controller
 
     public function store(TransactionRequest $request)
     {
-        // dd($request->all());
         $validate = $request->validated();
 
         $transaction = Transaction::where('label', 'textbook')
@@ -57,7 +56,6 @@ class GeneralbookController extends Controller
                     ->Where('status', 'Terlambat');
             })
             ->count();
-
 
         if ($transaction >= 3) {
             return back()->with('warning', 'Peminjaman melebihi batas yang telah ditentukan 😀');

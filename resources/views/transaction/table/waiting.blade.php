@@ -33,7 +33,8 @@
                                 @method('PUT')
                                 <button type="submit" class="btn btn-danger btn-sm">Tolak</button>
                             </form>
-                            @include('transaction.show')
+                             <a class="btn btn-primary btn-sm" href="{{ route('transactions.show', $item->id) }}"
+                                role="button">Lihat</a>
 
                         </div>
                     </td>
