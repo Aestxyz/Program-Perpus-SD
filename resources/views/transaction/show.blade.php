@@ -1,5 +1,5 @@
 <x-auth.layout>
-    <x-slot name="title">{{ $transaction->code }}</x-slot>
+    <x-slot name="title">{{ $transaction->label }} / {{ $transaction->code }}</x-slot>
     <div class="row">
         <!-- Customer Content -->
         <div class="col-xl-8 col-lg-7 col-md-7">
@@ -67,7 +67,7 @@
                 <div class="card-body">
                     <div class="customer-avatar-section">
                         <div class="d-flex align-items-center flex-column">
-                            <img class="img-fluid rounded my-3" src="/assets/img/avatars/1.png" height="110"
+                            <img class="img-fluid rounded my-3" src="https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ Auth()->user()->name }}" height="110"
                                 width="110" alt="User avatar">
                             <div class="customer-info text-center">
                                 <h4 class="mb-1">{{ $transaction->user->name }}</h4>

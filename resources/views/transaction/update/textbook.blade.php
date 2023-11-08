@@ -23,16 +23,15 @@
                     <label for="book_id" class="form-label">Buku</label>
                     <select id="select2Multiple" class="select2 form-select bg-body" name="book_id[]" multiple>
                         @foreach ($books as $book)
-                            @foreach ($transaction->books as $item)
-                                <option class="text-truncate {{ $book->book_count == 0 ? 'text-danger' : '' }}"
-                                    value="{{ $book->id }}" {{ $book->book_count == 0 ? 'disabled' : '' }}
-                                    {{ $book->id == $item->id ? 'selected' : '' }}>
-                                    {{ $book->title }} : {{ $book->book_count }}
-                                </option>
-                            @endforeach
+                            <option class="text-truncate {{ $book->book_count == 0 ? 'text-danger' : '' }}"
+                                value="{{ $book->id }}" {{ $book->book_count == 0 ? 'disabled' : '' }}
+                                {{ $transaction->books->contains('id', $book->id) ? 'selected' : '' }}>
+                                {{ $book->title }} : {{ $book->book_count }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
+
             </div>
         </div>
 

@@ -79,7 +79,8 @@
                     <h6 class="card-title mb-4">Detail User</h6>
                     <div class="d-flex justify-content-start align-items-center mb-4">
                         <div class="avatar me-2 pe-1">
-                            <img src="/assets/img/avatars/1.png" alt="Avatar" class="rounded-circle">
+                            <img src="https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ Auth()->user()->name }}"
+                                alt="Avatar" class="rounded-circle">
                         </div>
                         <div class="d-flex flex-column">
                             <a href="app-user-view-account.html">

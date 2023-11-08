@@ -153,7 +153,7 @@
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="{{ Auth()->user()->avatar ?? '/assets/img/avatars/1.png' }}" alt
+                                        <img src="https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ Auth()->user()->name }}" alt
                                             width="35" height="35" style="object-fit: cover;"
                                             class="rounded-circle" />
                                     </div>
@@ -164,7 +164,7 @@
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="{{ Auth()->user()->avatar ?? '/assets/img/avatars/1.png' }}"
+                                                        <img src="https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ Auth()->user()->name }}"
                                                             alt="avatar user" width="40" height="40"
                                                             style="object-fit: cover;" class="rounded-circle" />
                                                     </div>
