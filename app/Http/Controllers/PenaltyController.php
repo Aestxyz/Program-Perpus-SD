@@ -14,20 +14,13 @@ class PenaltyController extends Controller
     public function index()
     {
         $penalties = Penalty::get();
-        $total = 0;
-
-        foreach ($penalties as $penalty) {
-            $total += $penalty->amount;
-        }
-
-        $dont_payment = Transaction::where('status', 'Terlambat')
-            ->latest()
-            ->get();
+        $totalPenaltyAmount = $penalties->sum('amount');
+        $lateTransactions = Transaction::where('status', 'Terlambat')->latest()->get();
 
         return view('penalty.index', [
             'penalties' => $penalties,
-            'all_amount' => $total,
-            'dont_payment' => $dont_payment
+            'all_amount' => $totalPenaltyAmount,
+            'dont_payment' => $lateTransactions
         ]);
     }
     public function store(PenaltyRequest $request)
@@ -41,27 +34,24 @@ class PenaltyController extends Controller
             'return_date' => Carbon::now()->format('Y-m-d'),
         ]);
 
-        $book = Book::findOrfail($transaction->book->id);
-        $book->book_count++;
-        $book->save();
+        Book::findOrfail($transaction->book->id)->increment('book_count');
 
         return redirect()->route('penalties.index')->with('success', 'Proses pelunasan dan pengembalian buku telah berhasil dilakukan.');
     }
 
     public function show($id)
     {
-        $transaction = Transaction::findOrfail($id);
-        $lates_day = Carbon::parse($transaction->return_date)->diffInDays();
+        $transaction = Transaction::findOrFail($id);
+        $lateDays = Carbon::parse($transaction->return_date)->diffInDays();
 
-        $penalty = 1000;
-
-        $amount = $lates_day * $penalty;
+        $penaltyPerDay = 1000;
+        $penaltyAmount = $lateDays * $penaltyPerDay;
 
         return view('penalty.show', [
             'transaction' => $transaction,
-            'lates_day' => $lates_day,
-            'penalty' => $penalty,
-            'amount' => $amount,
+            'lates_day' => $lateDays,
+            'penalty' => $penaltyPerDay,
+            'amount' => $penaltyAmount,
         ]);
     }
 }

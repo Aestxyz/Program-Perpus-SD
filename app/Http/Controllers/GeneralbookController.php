@@ -14,13 +14,13 @@ class GeneralbookController extends Controller
 {
     public function index()
     {
-        $transaction =  Transaction::where('label', 'generalbook')
+        $transactions =  Transaction::where('label', 'generalbook')
             ->latest()
             ->get();
 
-        $walking = $transaction->where('status', 'Berjalan');
-        $penalty = $transaction->where('status', 'Terlambat');
-        $finished = $transaction->where('status', 'Selesai');
+        $walking = $transactions->where('status', 'Berjalan');
+        $penalty = $transactions->where('status', 'Terlambat');
+        $finished = $transactions->where('status', 'Selesai');
 
         $users = User::where('role', 'Anggota')
             ->select('id', 'name')
@@ -44,30 +44,23 @@ class GeneralbookController extends Controller
 
     public function store(TransactionRequest $request)
     {
-        $validate = $request->validated();
+        $validatedData = $request->validated();
 
-        $transaction = Transaction::where('label', 'textbook')
-            ->where('user_id', $request->user_id)
-            ->where(function ($query) {
-                $query->where('status', 'Berjalan')
-                    ->orWhere('status', 'Terlambat');
-            })->orWhere(function ($query) {
-                $query->where('status', 'Berjalan')
-                    ->Where('status', 'Terlambat');
-            })
+        $existingTransactions = Transaction::where('label', 'generalbook')
+            ->where('user_id', $validatedData['user_id'])
+            ->whereIn('status', ['Berjalan', 'Terlambat'])
             ->count();
 
-        if ($transaction >= 3) {
+        if ($existingTransactions >= 3) {
             return back()->with('warning', 'Peminjaman melebihi batas yang telah ditentukan 😀');
         } else {
+            $user = User::findOrFail($validatedData['user_id']);
 
-            $user = User::findOrFail($request->user_id);
+            $validatedData['code'] = $user->slug . '-' . Str::random(10);
+            $validatedData['label'] = 'generalbook';
 
-            $validate['code'] = $user->slug . '-' . Str::random(10);
-            $validate['label'] = 'generalbook';
-            $data = Transaction::create($validate);
-
-            $data->books()->attach($request->book_id);
+            $transaction = Transaction::create($validatedData);
+            $transaction->books()->sync($request->book_id);
 
             Book::whereIn('id', $request->book_id)->decrement('book_count');
 
@@ -80,23 +73,24 @@ class GeneralbookController extends Controller
         $validate = $request->validated();
 
         $transaction = Transaction::findOrFail($id);
+        // Get the current books associated with the transaction
+        $currentBooks = $transaction->books->pluck('id')->toArray();
 
-        $transaction->update($validate);
+        // Check if there are changes in the books
+        if ($request->book_id != $currentBooks) {
+            // Increase book_count for the books that were previously associated
+            Book::whereIn('id', $currentBooks)->increment('book_count');
 
-        // Check if there are new books to be attached
-        if ($request->book_id) {
-            $transaction->books()->sync($request->book_id);
-
-            // Decrease book_count for the newly added books
+            // Decrease book_count for the newly selected books
             Book::whereIn('id', $request->book_id)->decrement('book_count');
+
+            // Sync the books for the transaction
+            $transaction->books()->sync($request->book_id);
         }
 
-        // Check if any books were detached
-        if ($transaction->books()->whereNotIn('id', $request->book_id)->get()) {
-            Book::whereIn('id', $transaction->books()->whereNotIn('id', $request->book_id)->pluck('id'))->increment('book_count');
-        }
+        // Update the transaction with the validated data
+        $transaction->update($validate);
 
         return back()->with('success', 'Data telah diperbarui dengan sukses.');
     }
-
 }

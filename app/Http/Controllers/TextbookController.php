@@ -86,22 +86,24 @@ class TextbookController extends Controller
 
         $transaction = Transaction::findOrFail($id);
 
-        $transaction->update($validate);
+        // Get the current books associated with the transaction
+        $currentBooks = $transaction->books->pluck('id')->toArray();
 
-        // Check if there are new books to be attached
-        if ($request->book_id) {
-            $transaction->books()->sync($request->book_id);
+        // Check if there are changes in the books
+        if ($request->book_id != $currentBooks) {
+            // Increase book_count for the books that were previously associated
+            Book::whereIn('id', $currentBooks)->increment('book_count');
 
-            // Decrease book_count for the newly added books
+            // Decrease book_count for the newly selected books
             Book::whereIn('id', $request->book_id)->decrement('book_count');
+
+            // Sync the books for the transaction
+            $transaction->books()->sync($request->book_id);
         }
 
-        // Check if any books were detached
-        if ($transaction->books()->whereNotIn('id', $request->book_id)->get()) {
-            Book::whereIn('id', $transaction->books()->whereNotIn('id', $request->book_id)->pluck('id'))->increment('book_count');
-        }
+        // Update the transaction with the validated data
+        $transaction->update($validate);
 
         return back()->with('success', 'Data telah diperbarui dengan sukses.');
     }
-
 }

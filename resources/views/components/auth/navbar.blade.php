@@ -125,12 +125,12 @@
             <ul class="menu-sub">
                 <li class="menu-item">
                     <a href="{{ route('reports.generalbook') }}" class="menu-link">
-                        <div data-i18n="Data-User">Laporan Buku Umum</div>
+                        <div data-i18n="Data-User">Buku Umum</div>
                     </a>
                 </li>
                 <li class="menu-item">
                     <a href="{{ route('reports.textbook') }}" class="menu-link">
-                        <div data-i18n="Konfirmasi-Akun">:aporan Buku Paket</div>
+                        <div data-i18n="Konfirmasi-Akun">Buku Paket</div>
                     </a>
                 </li>
             </ul>
