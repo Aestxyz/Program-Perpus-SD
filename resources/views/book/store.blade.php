@@ -93,7 +93,7 @@ Tambah Data
     </div>
     <div class="col-md">
         <div class="mb-3">
-            <label for="type" class="form-label">Kategori Buku</label>
+            <label for="type" class="form-label">Tipe Buku</label>
             <select class="form-select" name="type" id="type">
                 <option selected disabled>Select one</option>
                 <option value="Umum">Umum</option>

@@ -19,14 +19,14 @@
                     <!-- Logo -->
                     <div class="app-brand justify-content-center mt-5">
                         <a href="/" class="app-brand-link gap-2">
-                            <span class="app-brand-text demo text-heading fw-semibold">Sneat</span>
+                            <span class="app-brand-text demo text-heading fw-semibold">SI-PERPUSTAKAAN</span>
                         </a>
                     </div>
                     <!-- /Logo -->
 
                     <div class="card-body mt-2">
-                        <h4 class="mb-2">Welcome to Materio! 👋</h4>
-                        <p class="mb-4">Please sign-in to your account and start the adventure</p>
+                        <h4 class="mb-2">Selamat datang user! 👋</h4>
+                        <p class="mb-4">Silakan masuk ke akun Anda </p>
 
                         <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('login') }}">
                             @csrf
