@@ -112,7 +112,9 @@
                                     name="role" id="role">
                                     <option selected disabled>Pilih satu</option>
                                     <option value="Anggota">Anggota</option>
-                                    <option value="Petugas">Petugas</option>
+                                    @if (Auth()->user()->role == 'Petugas')
+                                        <option value="Petugas">Petugas</option>
+                                    @endif
                                 </select>
                                 <label for="role">Status</label>
                                 @error('role')
