@@ -119,7 +119,7 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+                        <span class="demo menu-text fs-5 fw-bolder ms-2 ">SI-PERPUSTAKAAN</span>
                     </a>
 
                     <a href="javascript:void(0);"
@@ -156,8 +156,9 @@
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ Auth()->user()->name }}" alt width="35" height="35"
-                                            style="object-fit: cover;" class="rounded-circle" />
+                                        <img src="https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ Auth()->user()->name }}"
+                                            alt width="35" height="35" style="object-fit: cover;"
+                                            class="rounded-circle" />
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -166,9 +167,9 @@
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ Auth()->user()->name }}" alt="avatar user"
-                                                            width="40" height="40" style="object-fit: cover;"
-                                                            class="rounded-circle" />
+                                                        <img src="https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ Auth()->user()->name }}"
+                                                            alt="avatar user" width="40" height="40"
+                                                            style="object-fit: cover;" class="rounded-circle" />
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
