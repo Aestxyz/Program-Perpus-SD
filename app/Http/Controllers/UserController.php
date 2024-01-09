@@ -11,15 +11,25 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    public function member()
     {
-        return view('user.index', [
-            'users' => User::whereNotNull('email_verified_at')->latest()->get(),
-            'member' => User::where('role', 'Anggota')
-                ->whereNotNull('email_verified_at')
+        return view('user.member', [
+            'users' => User::whereNotNull('email_verified_at')
+                ->whereRole('Anggota')
+                ->latest()->get(),
+            'member' => User::whereNotNull('email_verified_at')
+                ->whereRole('Anggota')
                 ->get(),
-            'officer' => User::where('role', 'Petugas')
-                ->whereNotNull('email_verified_at')
+        ]);
+    }
+    public function officer()
+    {
+        return view('user.officer', [
+            'users' => User::whereNotNull('email_verified_at')
+                ->whereRole('Petugas')
+                ->latest()->get(),
+            'officer' => User::whereNotNull('email_verified_at')
+                ->whereRole('Petugas')
                 ->get(),
         ]);
     }

@@ -45,14 +45,6 @@ Route::middleware(['auth', 'role:Petugas,Kepala'])->group(function () {
         Route::put('/{id}/password', [ProfileController::class, 'password'])->name('profile.password');
     });
 
-    Route::prefix('users')->group(function () {
-        Route::get('/', [UserController::class, 'index'])->name('users.index');
-        Route::post('/', [UserController::class, 'store'])->name('users.store');
-        Route::get('/{slug}/show', [UserController::class, 'show'])->name('users.show');
-        Route::put('/{id}', [UserController::class, 'update'])->name('users.update');
-        Route::delete('/{id}', [UserController::class, 'destroy'])->name('users.destroy');
-    });
-
     Route::prefix('categories')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
         Route::post('/', [CategoryController::class, 'store'])->name('categories.store');
@@ -94,5 +86,14 @@ Route::middleware(['auth', 'role:Petugas,Kepala'])->group(function () {
     Route::prefix('/reports')->group(function () {
         Route::get('/generalbook', [ReportController::class, 'generalbook'])->name('reports.generalbook');
         Route::get('/textbook', [ReportController::class, 'textbook'])->name('reports.textbook');
+    });
+
+    Route::prefix('users')->group(function () {
+        Route::get('/officers/', [UserController::class, 'officer'])->name('user.officers');
+        Route::get('/members/', [UserController::class, 'member'])->name('user.members');
+        Route::post('/', [UserController::class, 'store'])->name('users.store');
+        Route::get('/{slug}/show', [UserController::class, 'show'])->name('users.show');
+        Route::put('/{id}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('/{id}', [UserController::class, 'destroy'])->name('users.destroy');
     });
 });

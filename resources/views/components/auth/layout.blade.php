@@ -119,7 +119,8 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="demo menu-text fs-5 fw-bolder ms-2 ">SI-PERPUSTAKAAN</span>
+
+                        <span class="app-brand-text demo menu-text fw-bolder ms-2 fs-4">SI-Perpustakaan</span>
                     </a>
 
                     <a href="javascript:void(0);"

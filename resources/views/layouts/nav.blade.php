@@ -3,7 +3,7 @@
     <li class="menu-item">
         <a href="/home" class="menu-link">
             <i class="menu-icon tf-icons bx bx-home-circle"></i>
-            <div data-i18n="Dashboard">Dashboard</div>
+            <div data-i18n="Dashboard">Beranda</div>
         </a>
     </li>
 

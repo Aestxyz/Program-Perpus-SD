@@ -24,7 +24,7 @@
                 </button>
                 <div class="row gy-2">
                     <div class="col-md">
-                        <div class="card">
+                        <div class="card shadow-none">
                             <h5 class="card-header">Biodata Anggota</h5>
                             <div class="card-body text-start">
                                 <p class="card-text">Nama : {{ $penalty->transaction->user->name }}</p>
@@ -36,10 +36,16 @@
 
                     </div>
                     <div class="col-md">
-                        <div class="card">
+                        <div class="card shadow-none">
                             <h5 class="card-header">Peminjaman dan Pengembalian</h5>
                             <div class="card-body text-start">
-                                <p class="card-text">Buku : {{ $penalty->transaction->book->title }}</p>
+                                <p class="card-text">Buku :
+                                <ul>
+                                    @foreach ($penalty->transaction->books as $item)
+                                        <li>{{ $item->title }}</li>
+                                    @endforeach
+                                </ul>
+                                </p>
                                 <p class="card-text">Tanggal Pinjam : {{ $penalty->transaction->borrow_date }}</p>
                                 <p class="card-text">Tanggal kembali : {{ $penalty->transaction->return_date }}</p>
                                 <p class="card-text">Status : <span

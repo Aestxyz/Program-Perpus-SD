@@ -1,6 +1,6 @@
 <x-auth.layout>
     @include('layouts.table')
-    <x-slot name="title">Books</x-slot>
+    <x-slot name="title">Buku</x-slot>
     <div class="card mb-3">
         <div class="row">
             <div class="col-12 col-md-6">
@@ -32,7 +32,6 @@
                             <th>image</th>
                             <th>judul</th>
                             <th>tipe buku</th>
-                            <th>kategori buku</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -46,7 +45,6 @@
                                 </td>
                                 <td>{{ $book->title }}</td>
                                 <td>{{ $book->type }}</td>
-                                <td><span class="badge bg-secondary">{{ $book->category->name }}</span></td>
                                 <td>
                                     <a class="btn  btn-primary btn-sm" href="{{ route('books.show', $book->id) }}"
                                         role="button">Lihat</a>

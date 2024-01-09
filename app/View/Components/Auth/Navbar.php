@@ -2,8 +2,8 @@
 
 namespace App\View\Components\Auth;
 
+use App\Models\Book;
 use App\Models\Transaction;
-use App\Models\User;
 use Illuminate\View\Component;
 
 class Navbar extends Component
@@ -26,8 +26,8 @@ class Navbar extends Component
     public function render()
     {
         return view('components.auth.navbar', [
-            'pending' => User::whereNull('email_verified_at')->count(),
-            'late_days' => Transaction::where('status', 'Terlambat')->count()
+            'late_days' => Transaction::where('status', 'Terlambat')
+                ->count(),
         ]);
     }
 }
