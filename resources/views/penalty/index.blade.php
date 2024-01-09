@@ -14,7 +14,7 @@
                                     class="avatar pull-up" aria-label="{{ $item->transaction->user->name }}"
                                     data-bs-original-title="{{ $item->transaction->user->name }}">
                                     <img class="rounded-circle"
-                                        src="https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ Auth()->user()->name }}"
+                                        src="https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ $item->transaction->user->name }}"
                                         alt="Avatar">
                                 </li>
                             @empty
@@ -46,7 +46,7 @@
                                     class="avatar pull-up" aria-label="{{ $item->user->name }}"
                                     data-bs-original-title="{{ $item->user->name }}">
                                     <img class="rounded-circle"
-                                        src="https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ Auth()->user()->name }}"
+                                        src="https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ $item->user->name }}"
                                         alt="Avatar">
                                 </li>
                             @empty
