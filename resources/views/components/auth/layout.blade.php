@@ -119,7 +119,7 @@
                                 </g>
                             </svg>
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+                        <span class="app-brand-text demo menu-text fw-bolder ms-2 fs-4">SI-Perpustakaan</span>
                     </a>
 
                     <a href="javascript:void(0);"

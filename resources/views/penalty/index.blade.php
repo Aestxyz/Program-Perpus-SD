@@ -1,5 +1,5 @@
 <x-auth.layout>
-    <x-slot name="title">Penalties</x-slot>
+    <x-slot name="title">Denda Peminjaman Buku</x-slot>
     @include('layouts.table')
 
     <div class="row mb-3 gy-3">

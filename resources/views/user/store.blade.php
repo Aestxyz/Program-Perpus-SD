@@ -1,6 +1,6 @@
 <!-- Modal trigger button -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalId">
-    Tambah User
+    Tambah Baru
 </button>
 
 <!-- Modal Body -->
@@ -125,8 +125,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
         </div>

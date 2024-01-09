@@ -13,7 +13,7 @@ class PenaltyController extends Controller
 {
     public function index()
     {
-        $penalties = Penalty::get();
+        $penalties = Penalty::latest()->get();
         $totalPenaltyAmount = $penalties->sum('amount');
         $lateTransactions = Transaction::where('status', 'Terlambat')->latest()->get();
 
@@ -29,12 +29,15 @@ class PenaltyController extends Controller
         Penalty::create($validate);
 
         $transaction = Transaction::findOrfail($request->transaction_id);
+
+        foreach ($transaction->books as $item) {
+            Book::findOrfail($item->id)->increment('book_count');
+        }
+
         $transaction->update([
             'status' => 'Selesai',
             'return_date' => Carbon::now()->format('Y-m-d'),
         ]);
-
-        Book::findOrfail($transaction->book->id)->increment('book_count');
 
         return redirect()->route('penalties.index')->with('success', 'Proses pelunasan dan pengembalian buku telah berhasil dilakukan.');
     }

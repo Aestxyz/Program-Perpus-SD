@@ -1,5 +1,5 @@
 <x-auth.layout>
-    <x-slot name="title">Transaction Library - Textbooks</x-slot>
+    <x-slot name="title">Peminjaman Buku Paket</x-slot>
     @include('layouts.table')
 
     <div class="card mb-4">
@@ -53,7 +53,7 @@
         </div>
     </div>
     <div class="card mb-3">
-        <h5 class="card-header mb-0 pb-0">Tambah Peminjaman Buku</h5>
+        <h5 class="card-header mb-0 pb-0">Tambah Peminjaman Buku Paket</h5>
         @include('transaction.store.textbook')
     </div>
 
@@ -64,6 +64,9 @@
                     data-bs-target="#navs-justified-walking" aria-controls="navs-justified-walking"
                     aria-selected="false"><i class="tf-icons mdi mdi-timer-sand-complete mdi-20px me-1"></i>
                     Berjalan
+                    @if ($walking->count() > 0)
+                        <span class="badge bg-primary">{{ $walking->count() }}</span>
+                    @endif
                 </button>
             </li>
             <li class="nav-item">
@@ -71,6 +74,9 @@
                     data-bs-target="#navs-justified-penalty" aria-controls="navs-justified-penalty"
                     aria-selected="false"><i class="tf-icons mdi mdi-alert-box-outline mdi-20px me-1"></i>
                     Terlambat
+                    @if ($penalty->count() > 0)
+                        <span class="badge bg-danger">{{ $penalty->count() }}</span>
+                    @endif
                 </button>
             </li>
             <li class="nav-item">
@@ -78,6 +84,9 @@
                     data-bs-target="#navs-justified-finished" aria-controls="navs-justified-finished"
                     aria-selected="false"><i class="tf-icons mdi mdi-tag-check mdi-20px me-1"></i>
                     Selesai
+                    @if ($finished->count() > 0)
+                        <span class="badge bg-success">{{ $finished->count() }}</span>
+                    @endif
                 </button>
             </li>
         </ul>

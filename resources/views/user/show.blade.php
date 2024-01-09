@@ -1,5 +1,5 @@
 <x-auth.layout>
-    <x-slot name="title">User ({{ $user->name }})</x-slot>
+    <x-slot name="title">{{ $user->name }}</x-slot>
     <div class="card">
         <div class="card-header pb-0">
             <h4 class="mb-0">Profile Details</h4>
@@ -69,9 +69,7 @@
                 </div>
                 <div class="col-md">
                     <div class="form-floating form-floating-outline mb-3">
-                        <select class="form-select form-control"
-                                name="role"
-                            id="role" disabled>
+                        <select class="form-select form-control" name="role" id="role" disabled>
                             <option disabled>Pilih satu</option>
                             <option value="Anggota" {{ $user->role == 'Anggota' ? '' : '' }}>Anggota
                             </option>
@@ -82,11 +80,5 @@
                 </div>
             </div>
         </div>
-
-        <div class="card-body text-end">
-            <h4 class="mb-0">History</h4>
-            <p>informasi pengguna di perbarui sejak {{ $user->updated_at }}</p>
-        </div>
-
     </div>
 </x-auth.layout>

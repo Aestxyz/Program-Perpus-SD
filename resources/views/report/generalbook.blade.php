@@ -1,5 +1,5 @@
 <x-auth.layout>
-    <x-slot name="title">Transaction Library Report Generalbook</x-slot>
+    <x-slot name="title">Laporan Peminjaman Buku Umum</x-slot>
     @include('layouts.report')
     <div class="card">
         <div class="card-body table-responsive">

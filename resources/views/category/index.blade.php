@@ -1,6 +1,6 @@
 <x-auth.layout>
     @include('layouts.table')
-    <x-slot name="title">Categories Book</x-slot>
+    <x-slot name="title">Kategori Buku</x-slot>
     <div class="card mb-3">
         <div class="row">
             <div class="col-12 col-md-6">

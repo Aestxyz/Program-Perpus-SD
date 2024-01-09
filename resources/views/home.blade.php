@@ -1,5 +1,5 @@
 <x-auth.layout>
-    <x-slot name="title">Home</x-slot>
+    <x-slot name="title">Beranda</x-slot>
     <div class="card">
         <div class="row">
             <div class="col-12 col-md-6">
