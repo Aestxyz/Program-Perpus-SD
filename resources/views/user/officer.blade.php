@@ -10,16 +10,11 @@
                         <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
                             class="avatar pull-up" aria-label="{{ $item->name }}"
                             data-bs-original-title="{{ $item->name }}">
-                            <img class="rounded-circle" src="/https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ $item->name }}" alt="Avatar">
-                        </li>
-                    @empty
-                        <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                            class="avatar pull-up" aria-label="{{ auth()->user()->name }}"
-                            data-bs-original-title="{{ auth()->user()->name }}">
                             <img class="rounded-circle"
-                                src="https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ auth()->user()->name }}"
+                                src="https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ $item->name }}"
                                 alt="Avatar">
                         </li>
+                    @empty
                     @endforelse
                 </ul>
             </div>
@@ -66,8 +61,8 @@
                                             <button class="btn  btn-danger btn-sm" type="submit">
                                                 Hapus</button>
                                         </form>
-                                        <a class="btn  btn-primary btn-sm"
-                                            href="{{ route('users.show', $user->slug) }}" role="button">Lihat</a>
+                                        <a class="btn  btn-primary btn-sm" href="{{ route('users.show', $user->slug) }}"
+                                            role="button">Lihat</a>
                                     </div>
                                 </td>
                             </tr>
