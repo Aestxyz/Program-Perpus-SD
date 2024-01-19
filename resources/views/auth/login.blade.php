@@ -19,15 +19,17 @@
                     <!-- Logo -->
                     <div class="app-brand justify-content-center mt-5">
                         <a href="/" class="app-brand-link gap-2">
-                            <img class="img" src="/image/logo.png" alt="logo" width="40px" height="60px">
+                            <img class="img" src="/image/logo.png" alt="logo" width="50px" height="60px">
                             <span class="app-brand-text demo text-heading fw-semibold">SI-PERPUSTAKAAN</span>
                         </a>
                     </div>
                     <!-- /Logo -->
 
                     <div class="card-body mt-2">
-                        <h4 class="mb-2">Selamat datang user! 👋</h4>
-                        <p class="mb-4">Silakan masuk ke akun Anda </p>
+                        <h4 class="mb-2">Selamat datang, Petugas! 👋</h4>
+                        <p class="mb-4">Silakan masuk untuk mengakses sistem perpustakaan dan mulai menjalankan tugas
+                            Anda dengan
+                            mudah.</p>
 
                         <form id="formAuthentication" class="mb-3" method="POST" action="{{ route('login') }}">
                             @csrf

@@ -76,7 +76,7 @@
                 <div class="app-brand demo">
                     <a href="{{ route('home') }}" class="app-brand-link">
                         <span class="app-brand-logo demo">
-                            <img class="img" src="/image/logo.png" alt="" width="40px" height="60px">
+                            <img class="img" src="/image/logo.png" alt="" width="50px" height="60px">
                         </span>
 
                         <span class="app-brand-text demo menu-text fw-bolder ms-2 fs-4">SI-Perpustakaan</span>
