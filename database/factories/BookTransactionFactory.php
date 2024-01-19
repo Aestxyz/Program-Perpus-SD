@@ -15,8 +15,12 @@ class BookTransactionFactory extends Factory
      */
     public function definition()
     {
+        $book = Book::where('book_count', '>', 1)
+        ->inRandomOrder()
+        ->first('id');
+
         return [
-            'book_id' => Book::all()->random(),
+            'book_id' => $book,
             'transaction_id' => Transaction::all()->random(),
         ];
     }

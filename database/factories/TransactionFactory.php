@@ -19,14 +19,25 @@ class TransactionFactory extends Factory
     public function definition()
     {
         $now = Carbon::now()->subMonths(1);
+
+        $user = User::whereNotNull('email_verified_at',)
+            ->where('role', 'Anggota')
+            ->inRandomOrder()
+            ->first('id');
+            
+        $borrow_date = $now->addDays(7)
+            ->format('Y-m-d');
+
+        $return_date = $now->addDays(rand(20, 35))
+            ->format('Y-m-d');
+
         return [
             'code' => Str::random(20),
-            'user_id' => User::all()->random(),
-            'borrow_date' => $now->addDays(7),
-            'return_date' => $now->addDays(14),
-            'status' => $this->faker->randomElement(['Menunggu', 'Berjalan', 'Terlambat']),
+            'user_id' => $user,
+            'borrow_date' => $borrow_date,
+            'return_date' => $return_date,
+            'status' => $this->faker->randomElement(['Selesai', 'Berjalan', 'Terlambat']),
             'label' => Arr::random(['textbook', 'generalbook'])
         ];
     }
-
 }

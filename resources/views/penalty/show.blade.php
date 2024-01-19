@@ -76,53 +76,52 @@
         <div class="col-12 col-lg-4">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h6 class="card-title mb-4">Detail User</h6>
-                    <div class="d-flex justify-content-start align-items-center mb-4">
-                        <div class="avatar me-2 pe-1">
-                            <img src="https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ Auth()->user()->name }}"
-                                alt="Avatar" class="rounded-circle">
-                        </div>
-                        <div class="d-flex flex-column">
-                            <a href="app-user-view-account.html">
-                                <h6 class="mb-1">{{ $transaction->user->name }}</h6>
-                            </a>
-                            <small>{{ $transaction->user->role }}</small>
+                    <div class="customer-avatar-section">
+                        <div class="d-flex align-items-center flex-column">
+                            <img class="img-fluid rounded my-3"
+                                src="https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ Auth()->user()->name }}"
+                                height="110" width="110" alt="User avatar">
+                            <div class="customer-info text-center">
+                                <h4 class="mb-1">{{ $transaction->user->name }}</h4>
+                                <small>NIS/Etc. {{ $transaction->user->identify }}</small>
+                            </div>
                         </div>
                     </div>
-                    <p class=" mb-1">Email : {{ $transaction->user->email }}</p>
-                    <p class=" mb-0">Telp : {{ $transaction->user->telp }}</p>
-                    <p class=" mb-0">NIS/Etc. : {{ $transaction->user->identify }}</p>
-                    <p class=" mb-0">Tanggal Lahir. : {{ $transaction->user->birthdate }}</p>
-                    <p class=" mb-0">Jenis Kelamin : {{ $transaction->user->gender }}</p>
+
+                    <div class="info-container">
+                        <small class="d-block pt-4 border-top text-muted my-3">DETAIL USER</small>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <span class="fw-medium me-2">Nama:</span>
+                                <span>{{ $transaction->user->name }}</span>
+                            </li>
+                            {{-- <li class="mb-3">
+                                <span class="fw-medium me-2">Email:</span>
+                                <span>{{ $transaction->user->email }}</span>
+                            </li> --}}
+                            <li class="mb-3">
+                                <span class="fw-medium me-2">Role:</span>
+                                <span class="badge bg-label-success">{{ $transaction->user->role }}</span>
+                            </li>
+                            <li class="mb-3">
+                                <span class="fw-medium me-2">Telp:</span>
+                                <span>{{ $transaction->user->telp }}</span>
+                            </li>
+                            <li class="mb-3">
+                                <span class="fw-medium me-2">NIS/Etc.:</span>
+                                <span>{{ $transaction->user->identify }}</span>
+                            </li>
+                            <li class="mb-3">
+                                <span class="fw-medium me-2">Jenis Kelamin:</span>
+                                <span>{{ $transaction->user->gender }}</span>
+                            </li>
+                            <li class="mb-3">
+                                <span class="fw-medium me-2">Tgl. Lahir:</span>
+                                <span>{{ $transaction->user->birthdate }}</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-
-            {{-- <div class="card mb-4">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="card-title m-0">Detail Buku</h5>
-                    <h6 class="m-0"><a href="{{ route('books.show', $transaction->book->id) }}">Lihat</a></h6>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-start align-items-center mb-4">
-                        <div class="avatar me-2 pe-1">
-                            <img src="{{ Storage::url($transaction->book->image) }}" alt="Avatar"
-                                class="rounded-circle">
-                        </div>
-                        <div class="d-flex flex-column">
-                            <a href="#">
-                                <h6 class="mb-1">{{ $transaction->book->title }}</h6>
-                            </a>
-                            <small>{{ $transaction->book->category->name }}</small>
-                        </div>
-                    </div>
-                    <p class=" mb-1">ISBN : {{ $transaction->book->isbn }}</p>
-                    <p class=" mb-1">Penulis : {{ $transaction->book->author }}</p>
-                    <p class=" mb-1">Penerbit : {{ $transaction->book->publisher }}</p>
-                    <p class=" mb-1">Tahun Terbit : {{ $transaction->book->year_published }}</p>
-                    <p class=" mb-1">Jumlah Buku : {{ $transaction->book->book_count }} Buku</p>
-                    <p class=" mb-1">Sinopsis : {{ $transaction->book->synopsis }}</p>
-                </div>
-            </div> --}}
         </div>
-    </div>
 </x-auth.layout>

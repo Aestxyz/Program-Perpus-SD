@@ -16,9 +16,11 @@
                 @csrf
                 @method('PUT')
                 <div class="modal-body">
-                    <h5 class="fw-bold mb-0">Perubahan informasi Pengguna
+                    <h5 class="fw-bold mb-3">Perubahan informasi Pengguna
                     </h5>
-                    <p>Kosongkan saja password jika tidak menggubah password</p>
+                    @if (!auth()->user()->role == 'Petugas')
+                        <p>Kosongkan saja password jika tidak menggubah password</p>
+                    @endif
                     <div class="row">
                         <div class="col-md">
                             <div class="form-floating form-floating-outline mb-3">
@@ -33,10 +35,11 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md">
+                        <div class="col-md {{ $user->role == 'Anggota' ? 'd-none' : '' }}">
                             <div class="form-floating form-floating-outline mb-3">
                                 <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                    name="email" value="{{ $user->email }}" placeholder="Enter your email" />
+                                    name="email" value="{{ $user->email }}" placeholder="Enter your email"
+                                    {{ $user->role == 'Anggota' ? 'readonly' : '' }} />
                                 <label for="email">Email</label>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -73,21 +76,22 @@
                                 @enderror
                             </div>
                         </div>
-
                     </div>
                     <div class="row">
-                        <div class="col-md">
-                            <div class="form-floating form-floating-outline mb-3">
-                                <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                    name="password" id="password" placeholder="Enter your password" />
-                                <label for="password">Password</label>
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        @if (!$user->role == 'Anggota')
+                            <div class="col-md">
+                                <div class="form-floating form-floating-outline mb-3">
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                        name="password" id="password" placeholder="Enter your password" />
+                                    <label for="password">Password</label>
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
+                        @endif
                         <div class="col-md">
                             <div class="form-floating form-floating-outline mb-3">
                                 <input type="date" class="form-control @error('birthdate') is-invalid @enderror"

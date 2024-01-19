@@ -19,6 +19,7 @@
                     <!-- Logo -->
                     <div class="app-brand justify-content-center mt-5">
                         <a href="/" class="app-brand-link gap-2">
+                            <img class="img" src="/image/logo.png" alt="logo" width="40px" height="60px">
                             <span class="app-brand-text demo text-heading fw-semibold">SI-PERPUSTAKAAN</span>
                         </a>
                     </div>

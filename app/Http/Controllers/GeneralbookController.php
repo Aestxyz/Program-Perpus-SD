@@ -18,11 +18,21 @@ class GeneralbookController extends Controller
             ->latest()
             ->get();
 
-        $walking = $transactions->where('status', 'Berjalan');
-        $penalty = $transactions->where('status', 'Terlambat');
+        $walking = $transactions
+            ->where('return_date', '>=', now())
+            ->where('status', 'Berjalan');
+
+        $penalty = $transactions
+            ->where('return_date', '<', now())
+            ->where('status', '!=', 'Tolak')
+            ->where('status', '!=', 'Menunggu')
+            ->where('status', '!=', 'Selesai');
+
+
         $finished = $transactions->where('status', 'Selesai');
 
         $users = User::where('role', 'Anggota')
+            ->whereNotNull('email_verified_at')
             ->select('id', 'name')
             ->get();
 
@@ -31,7 +41,8 @@ class GeneralbookController extends Controller
         $borrow_date = Carbon::now()->format('Y-m-d');
         $return_date = Carbon::now()->addDays(7)->format('Y-m-d');
 
-        return view('transaction.generalbook', [
+        return view('transaction.generalbook.index', [
+            'transactions' => $transactions,
             'walking' => $walking,
             'penalty' => $penalty,
             'finished' => $finished,

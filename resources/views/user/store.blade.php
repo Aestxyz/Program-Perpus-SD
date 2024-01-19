@@ -14,12 +14,14 @@
             <form id="formAuthentication" class="mb-3" action="{{ route('users.store') }}" method="POST">
                 @csrf
                 <div class="modal-body">
-                    <h5 class="fw-bold mb-0">Tambahkan informasi Pengguna
+                    <h5 class="fw-bold mb-3">Tambahkan informasi Pengguna
                     </h5>
-                    <p>Kata sandi akun diambil dari tanggal lahir pengguna, <span class="fw-bold text-primary">Ex:
-                            '22072001'
-                            atau
-                            '01122018'</span></p>
+                    @if (!auth()->user()->role == 'Petugas')
+                        <p>Kata sandi akun diambil dari tanggal lahir pengguna, <span class="fw-bold text-primary">Ex:
+                                '22072001'
+                                atau
+                                '01122018'</span></p>
+                    @endif
                     <div class="row">
                         <div class="col-md">
                             <div class="form-floating form-floating-outline mb-3">
@@ -34,10 +36,12 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-md">
+                        <div class="col-md {{ auth()->user()->role == 'Petugas' ? 'd-none' : '' }}">
                             <div class="form-floating form-floating-outline mb-3">
                                 <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                    name="email" value="{{ old('email') }}" placeholder="Enter your email" />
+                                    name="email"
+                                    value="{{ auth()->user()->role == 'Petugas' ? Str::random(5) . '@' . Str::random(5) . '.com' : old('email') }}"
+                                    placeholder="Enter your email" @if (auth()->user()->role == 'Petugas') readonly @endif />
                                 <label for="email">Email</label>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -112,7 +116,7 @@
                                     name="role" id="role">
                                     <option selected disabled>Pilih satu</option>
                                     <option value="Anggota">Anggota</option>
-                                    @if (Auth()->user()->role == 'Petugas')
+                                    @if (Auth()->user()->role == 'Kepala')
                                         <option value="Petugas">Petugas</option>
                                     @endif
                                 </select>

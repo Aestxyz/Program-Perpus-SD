@@ -1,10 +1,10 @@
 <x-auth.layout>
     @include('layouts.table')
-    <x-slot name="title">Anggota Perpustakaan</x-slot>
+    <x-slot name="title">Data Siswa</x-slot>
     <div class="card mb-3">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-center mb-2">
-                <p class="mb-0">Total {{ $member->count() }} users</p>
+                <p class="mb-0">Total {{ $member->count() }} Siswa</p>
                 <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
                     @forelse ($member->take(5) as $item)
                         <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
@@ -27,7 +27,7 @@
             </div>
             <div class="d-flex justify-content-between align-items-end">
                 <div class="role-heading">
-                    <h5 class="mb-1">Anggota Perpustakaan</h5>
+                    <h5 class="mb-1">Data Siswa Terdaftar</h5>
                 </div>
             </div>
         </div>

@@ -29,8 +29,10 @@
                 <div class="card p-2">
                     <!-- Logo -->
                     <div class="app-brand justify-content-center mt-5">
+                        <img class="img" src="/image/logo.png" alt="logo" width="40px" height="60px">
+
                         <a href="/" class="app-brand-link gap-2">
-                            <span class="app-brand-text demo text-heading fw-semibold">Materio</span>
+                            <span class="app-brand-text demo text-heading fw-semibold">si-perpustakaan</span>
                         </a>
                     </div>
                     <!-- /Logo -->

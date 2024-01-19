@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-header pb-0">
             <h4 class="mb-0">Profile Details</h4>
-            <p>Informasi pengguna di perbarui sejak {{ $user->updated_at }}</p>
+            <p>Informasi pengguna di terdaftar sejak {{ $user->created_at }}</p>
         </div>
 
         <div class="card-body">
@@ -17,14 +17,16 @@
                         <label for="name">Nama Lengkap</label>
                     </div>
                 </div>
-                <div class="col-md">
-                    <div class="form-floating form-floating-outline mb-3">
-                        <input type="text" class="form-control
+                @if (!$user->role == 'Anggota')
+                    <div class="col-md">
+                        <div class="form-floating form-floating-outline mb-3">
+                            <input type="text" class="form-control
                                 name="email"
-                            value="{{ $user->email }}" disabled placeholder="Enter your email" />
-                        <label for="email">Email</label>
+                                value="{{ $user->email }}" disabled placeholder="Enter your email" />
+                            <label for="email">Email</label>
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
             <div class="row">
                 <div class="col-md">

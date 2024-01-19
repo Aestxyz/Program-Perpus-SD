@@ -15,15 +15,25 @@ class TextbookController extends Controller
 {
     public function index()
     {
-        $transaction =  Transaction::where('label', 'textbook')
+        $transactions =  Transaction::where('label', 'textbook')
             ->latest()
             ->get();
 
-        $walking = $transaction->where('status', 'Berjalan');
-        $penalty = $transaction->where('status', 'Terlambat');
-        $finished = $transaction->where('status', 'Selesai');
+        $walking = $transactions
+            ->where('return_date', '>=', now())
+            ->where('status', 'Berjalan');
+
+        $penalty = $transactions
+            ->where('return_date', '<', now())
+            ->where('status', '!=', 'Tolak')
+            ->where('status', '!=', 'Menunggu')
+            ->where('status', '!=', 'Selesai');
+
+
+        $finished = $transactions->where('status', 'Selesai');
 
         $users = User::where('role', 'Anggota')
+            ->whereNotNull('email_verified_at')
             ->select('id', 'name')
             ->get();
 
@@ -32,7 +42,8 @@ class TextbookController extends Controller
         $borrow_date = Carbon::now()->format('Y-m-d');
         $return_date = Carbon::now()->addMonth(6)->format('Y-m-d');
 
-        return view('transaction.textbook', [
+        return view('transaction.textbook.index', [
+            'transactions' => $transactions,
             'walking' => $walking,
             'penalty' => $penalty,
             'finished' => $finished,

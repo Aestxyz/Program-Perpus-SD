@@ -29,7 +29,7 @@
         <li class="menu-item {{ request()->is('users') ? 'active' : '' }}">
             <a href="{{ route('user.members') }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-human"></i>
-                <div data-i18n="users">Akun Anggota</div>
+                <div data-i18n="users">Data Siswa</div>
             </a>
         </li>
         <li class="menu-item {{ request()->is('categories') ? 'active' : '' }}">
@@ -58,12 +58,17 @@
                 <li class="menu-item">
                     <a href="{{ route('generalbooks.index') }}" class="menu-link">
                         <div data-i18n="Data-User">Buku Umum</div>
-
+                        <div class="badge bg-danger rounded-pill ms-auto {{ $generalbook == null ? 'd-none' : '' }}">
+                            {{ $generalbook }}
+                        </div>
                     </a>
                 </li>
                 <li class="menu-item">
                     <a href="{{ route('textbooks.index') }}" class="menu-link">
                         <div data-i18n="Konfirmasi-Akun">Buku Paket</div>
+                        <div class="badge bg-danger rounded-pill ms-auto {{ $textbook == null ? 'd-none' : '' }}">
+                            {{ $textbook }}
+                        </div>
                     </a>
                 </li>
             </ul>

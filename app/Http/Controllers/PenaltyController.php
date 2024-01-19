@@ -15,7 +15,10 @@ class PenaltyController extends Controller
     {
         $penalties = Penalty::latest()->get();
         $totalPenaltyAmount = $penalties->sum('amount');
-        $lateTransactions = Transaction::where('status', 'Terlambat')->latest()->get();
+        $lateTransactions = Transaction::where('return_date', '<', now())
+            ->where('status', '!=', 'Tolak')
+            ->where('status', '!=', 'Menunggu')
+            ->where('status', '!=', 'Selesai');;
 
         return view('penalty.index', [
             'penalties' => $penalties,

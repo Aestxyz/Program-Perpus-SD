@@ -18,9 +18,9 @@
             <div class="collapse mb-3" id="collapseExample">
                 <div class="card">
                     @if ($transaction->label == 'generalbook')
-                        @include('transaction.update.generalbook')
+                        @include('transaction.generalbook.update')
                     @else
-                        @include('transaction.update.textbook')
+                        @include('transaction.textbook.update')
                     @endif
                 </div>
             </div>
@@ -67,8 +67,9 @@
                 <div class="card-body">
                     <div class="customer-avatar-section">
                         <div class="d-flex align-items-center flex-column">
-                            <img class="img-fluid rounded my-3" src="https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ Auth()->user()->name }}" height="110"
-                                width="110" alt="User avatar">
+                            <img class="img-fluid rounded my-3"
+                                src="https://api.dicebear.com/7.x/lorelei-neutral/svg?seed={{ Auth()->user()->name }}"
+                                height="110" width="110" alt="User avatar">
                             <div class="customer-info text-center">
                                 <h4 class="mb-1">{{ $transaction->user->name }}</h4>
                                 <small>NIS/Etc. {{ $transaction->user->identify }}</small>
@@ -83,10 +84,10 @@
                                 <span class="fw-medium me-2">Nama:</span>
                                 <span>{{ $transaction->user->name }}</span>
                             </li>
-                            <li class="mb-3">
+                            {{-- <li class="mb-3">
                                 <span class="fw-medium me-2">Email:</span>
                                 <span>{{ $transaction->user->email }}</span>
-                            </li>
+                            </li> --}}
                             <li class="mb-3">
                                 <span class="fw-medium me-2">Role:</span>
                                 <span class="badge bg-label-success">{{ $transaction->user->role }}</span>
