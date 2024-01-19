@@ -1,5 +1,6 @@
 <x-auth.layout>
-    <x-slot name="title">{{ $transaction->label }} / {{ $transaction->code }}</x-slot>
+    <x-slot name="title">Detail Peminjaman
+        {{ $transaction->label == 'textbook' ? 'Buku Paket' : 'Buku Umum' }}</x-slot>
     <div class="row">
         <!-- Customer Content -->
         <div class="col-xl-8 col-lg-7 col-md-7">
@@ -42,13 +43,10 @@
                                     <td>{{ $transaction->borrow_date }}</td>
                                     <td>{{ $transaction->return_date }}</td>
                                     <td>{{ $book->title }}</td>
-                                    <td><span
-                                            class="badge
-                                    @if ($transaction->status == 'Menunggu') bg-warning
-                                    @elseif($transaction->status == 'Berjalan') bg-primary
-                                    @elseif($transaction->status == 'Terlambat') bg-danger
-                                    @elseif($transaction->status == 'Selesai') bg-success @endif
-                                    ">{{ $transaction->status }}</span>
+                                    <td>
+                                        <span class="badge border text-dark bg-white">
+                                            {{ $transaction->return_date < now() && $transaction->status == 'Berjalan' ? 'Terlambat' : $transaction->status }}
+                                        </span>
                                     </td>
                                 </tr>
                             @endforeach

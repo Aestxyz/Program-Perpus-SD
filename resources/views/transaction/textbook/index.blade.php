@@ -132,9 +132,10 @@
                             <tr>
                                 <td>{{ ++$no }}.</td>
                                 <td>{{ $item->user->name ?? '-' }}</td>
-                                <td class="text-primary fw-bold">
-                                    {{ $item->return_date < now() && $item->status == 'Berjalan' ? 'Terlambat' : $item->status }}
-                                </td>
+                                <td>
+                                    <span class="badge bg-white text-dark border">
+                                        {{ $item->return_date < now() && $item->status == 'Berjalan' ? 'Terlambat' : $item->status }}
+                                    </span>                                </td>
                                 <td>{{ Carbon\carbon::parse($item->borrow_date)->format('d M Y') ?? '-' }}</td>
                                 <td>{{ Carbon\carbon::parse($item->return_date)->format('d M Y') ?? '-' }}</td>
                                 <td>

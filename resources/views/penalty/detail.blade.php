@@ -17,15 +17,15 @@
                 <div class="text-wrap">
                     <h4 class="fw-bold">Informasi Peminjaman dan Pengembalian Buku
                         Perpustakaan</h4>
-                    <p>Kode Peminjaman:</p>
+                    {{-- <p>Kode Peminjaman:</p>
                     <button type="button" disabled class="btn btn-body mb-4" style="outline-style: dashed;">
-                        <span class="text-dark">{{ $penalty->transaction->code }}</span>
+                        <span class="text-dark">{{ $penalty->transaction->code }}</span> --}}
                 </div>
                 </button>
                 <div class="row gy-2">
                     <div class="col-md">
                         <div class="card shadow-none">
-                            <h5 class="card-header">Biodata Anggota</h5>
+                            <h5 class="card-header text-start">Biodata Anggota</h5>
                             <div class="card-body text-start">
                                 <p class="card-text">Nama : {{ $penalty->transaction->user->name }}</p>
                                 <p class="card-text">Telp : {{ $penalty->transaction->user->telp }}</p>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-md">
                         <div class="card shadow-none">
-                            <h5 class="card-header">Peminjaman dan Pengembalian</h5>
+                            <h5 class="card-header text-start">Peminjaman dan Pengembalian</h5>
                             <div class="card-body text-start">
                                 <p class="card-text">Buku :
                                 <ul>
