@@ -57,63 +57,6 @@
         @include('transaction.generalbook.store')
     </div>
 
-    {{-- <div class="nav-align-top mb-3">
-        <ul class="nav nav-tabs nav-fill" role="tablist">
-            <li class="nav-item">
-                <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
-                    data-bs-target="#navs-justified-walking" aria-controls="navs-justified-walking"
-                    aria-selected="false"><i class="tf-icons mdi mdi-timer-sand-complete mdi-20px me-1"></i>
-                    Berjalan
-                    @if ($walking->count() > 0)
-                        <span class="badge bg-primary">{{ $walking->count() }}</span>
-                    @endif
-
-                </button>
-            </li>
-            <li class="nav-item">
-                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
-                    data-bs-target="#navs-justified-penalty" aria-controls="navs-justified-penalty"
-                    aria-selected="false"><i class="tf-icons mdi mdi-alert-box-outline mdi-20px me-1"></i>
-                    Terlambat
-                    @if ($penalty->count() > 0)
-                        <span class="badge bg-danger">{{ $penalty->count() }}</span>
-                    @endif
-                </button>
-            </li>
-            <li class="nav-item">
-                <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
-                    data-bs-target="#navs-justified-finished" aria-controls="navs-justified-finished"
-                    aria-selected="false"><i class="tf-icons mdi mdi-tag-check mdi-20px me-1"></i>
-                    Selesai
-                    @if ($finished->count() > 0)
-                        <span class="badge bg-success">{{ $finished->count() }}</span>
-                    @endif
-                </button>
-            </li>
-        </ul>
-    </div>
-    <div class="card">
-        <div class="card-body">
-            <div class="tab-content p-0">
-                <div class="tab-pane fade show active" id="navs-justified-walking" role="tabpanel">
-                    <div class="card-body">
-                        @include('transaction.table.walking')
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="navs-justified-penalty" role="tabpanel">
-                    <div class="card-body">
-                        @include('transaction.table.penalty')
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="navs-justified-finished" role="tabpanel">
-                    <div class="card-body">
-                        @include('transaction.table.finished')
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">

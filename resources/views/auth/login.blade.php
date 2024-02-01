@@ -45,7 +45,7 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="password">Password</label>
+                                <label for="password">Kata Sandi</label>
                                 <input type="password" id="password"
                                     class="form-control @error('password') is-invalid @enderror" name="password"
                                     placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
@@ -64,11 +64,11 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember"
                                         {{ old('remember') ? 'checked' : '' }} />
-                                    <label class="form-check-label" for="remember-me"> Remember Me </label>
+                                    <label class="form-check-label" for="remember-me"> Ingat Saya </label>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                                <button class="btn btn-primary d-grid w-100" type="submit">Masuk</button>
                             </div>
                         </form>
                     </div>

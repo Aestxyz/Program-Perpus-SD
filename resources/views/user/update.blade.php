@@ -1,6 +1,6 @@
 <!-- Modal trigger button -->
 <button type="button" class="btn  btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#{{ $user->slug }}">
-    Edit
+    Ubah
 </button>
 
 <!-- Modal Body -->

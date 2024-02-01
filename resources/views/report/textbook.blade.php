@@ -6,7 +6,6 @@
             <table id="example" class="display" style="width:100%">
                 <thead>
                     <tr>
-                        <th>NO</th>
                         <th>Nama</th>
                         <th>Buku</th>
                         <th>Tanggal Pinjam</th>
@@ -18,7 +17,6 @@
                 <tbody>
                     @foreach ($transactions as $no => $transaction)
                         <tr>
-                            <td>{{ ++$no }}</td>
                             <td>{{ $transaction->user->name }}</td>
                             <td class="text-start">
                                 <ol>

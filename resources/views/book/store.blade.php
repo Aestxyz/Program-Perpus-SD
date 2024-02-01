@@ -8,7 +8,10 @@
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalTitleId">Buku</h5>
+                <div class="modal-title" id="modalTitleId">
+                    <p class="m-0 fw-bold">Tambah Buku</p>
+                    <small class="m-0">Masukkan informasi yang sesuai dengan form tambah buku</small>
+                </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('books.store') }}" method="post" enctype="multipart/form-data">

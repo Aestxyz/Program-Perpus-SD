@@ -1,6 +1,6 @@
 <!-- Modal trigger button -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalId">
-    Edit
+<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalId">
+    Ubah
 </button>
 
 <!-- Modal Body -->
@@ -8,8 +8,10 @@
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalTitleId">Buku <span class="text-primary">{{ $book->title }}</span>
-                </h5>
+                <div class="modal-title" id="modalTitleId">
+                    <p class="m-0 fw-bold">Buku {{ $book->title }}</p>
+                    <small class="m-0 text-danger">Jangan masukkan ulang gambar jika tidak ingin mengubah gambar</small>
+                </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{ route('books.update', $book->id) }}" method="post" enctype="multipart/form-data">

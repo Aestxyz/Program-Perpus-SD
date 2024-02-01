@@ -19,7 +19,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->email(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'slug' => $this->faker->slug(),
-            'telp' => $this->faker->numerify(),
+            'telp' => '0852' . $this->faker->ean8(),
             'role' => $this->faker->randomElement(['Petugas', 'Anggota']),
             'birthdate' => $this->faker->date(),
             'gender' => $this->faker->randomElement(['Laki-laki', 'Perempuan']),
