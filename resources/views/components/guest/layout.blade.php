@@ -49,6 +49,7 @@
 </head>
 
 <body class="bg-white">
+    @include('layouts.payment')
     <x-guest.navbar></x-guest.navbar>
     <div class="container">
         @if (session('success'))
